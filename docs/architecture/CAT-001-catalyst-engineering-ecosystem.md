@@ -37,6 +37,8 @@ CAT-001 covers:
 - Program Increment 0 objectives,
 - artifact ownership,
 - repository interface contracts,
+- engineering cadence,
+- release strategy,
 - and guiding engineering principles.
 
 CAT-001 does not define detailed AES requirements, AEMS implementation internals, repository template file contents, or Atarix operating-system architecture.
@@ -204,6 +206,89 @@ Each engineering artifact should have exactly one authoritative owner. Other rep
 4. If a structure should exist in every new repository, it belongs in repo_templates.
 5. If a decision affects the ecosystem roadmap or cross-repository priorities, it belongs in catylist.
 6. If an artifact is specific to one product, it belongs in that product repository.
+
+## Engineering Cadence
+
+Catalyst work should leave the repositories in a measurably better state each session.
+
+The expected session pattern is:
+
+1. Review current repository state.
+2. Identify the highest-priority unblocked work item.
+3. Make one logical change in the owning repository.
+4. Commit the change with a descriptive message.
+5. Record the commit SHA.
+6. Update related issues or downstream work as needed.
+
+The preferred engineering flow is:
+
+```text
+Issue -> Specification -> Implementation -> Validation -> Evidence -> Merge
+```
+
+A session should produce at least one committed artifact, issue update, validation result, or implementation change. Chat is engineering discussion; repository state is the authoritative record.
+
+## PI-0 Execution Plan
+
+PI-0 should be executed in dependency order:
+
+1. catylist establishes ecosystem governance and program structure.
+2. AES defines the engineering standards required by the ecosystem.
+3. AEMS implements automation that satisfies AES requirements.
+4. repo_templates provides the reusable bootstrap state for new repositories.
+5. Project repositories validate the standards, automation, and templates through Project Zero.
+
+No repository should permanently solve a reusable problem at the wrong layer. Reusable standards move to AES. Reusable automation moves to AEMS. Reusable bootstrap assets move to repo_templates. Cross-repository governance moves to catylist.
+
+## Release Strategy
+
+Catalyst releases describe maturity of the engineering ecosystem, not product implementation alone.
+
+Catalyst v0.1.0 should represent the first engineering foundation release. It should include:
+
+- CAT-001 through the initial governance specifications,
+- foundational AES standards,
+- initial AEMS Project Zero automation,
+- repo_templates bootstrap support,
+- and at least one project repository progressing through Project Zero using the emerging system.
+
+Atarix v0.1.0 should follow the engineering foundation, not precede it. The Atarix product release should depend on a stable enough Catalyst foundation to support traceable development.
+
+## Engineering Ready
+
+A repository is Engineering Ready when it has completed Project Zero or has explicitly documented deferrals for any unfinished Project Zero work.
+
+At minimum, Engineering Ready requires:
+
+- repository inventory,
+- documentation inventory,
+- metadata baseline,
+- classification baseline,
+- validation results,
+- traceability baseline,
+- automation configuration,
+- manifest validation,
+- and certification evidence.
+
+The exact normative criteria belong in AES. CAT-001 defines the program-level intent.
+
+## AES Normative Specification Model
+
+AES should operate as the normative standard library for Catalyst.
+
+Every AES specification should eventually declare:
+
+- stable identifier,
+- title,
+- owner,
+- lifecycle state,
+- semantic version,
+- dependencies,
+- implementations,
+- consumers,
+- and change history.
+
+This enables traceability from program governance to standards, from standards to automation, from automation to templates, and from templates to project repositories.
 
 ## Guiding Principles
 
