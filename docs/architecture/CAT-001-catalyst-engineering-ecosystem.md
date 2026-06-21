@@ -35,6 +35,7 @@ CAT-001 covers:
 - cross-repository dependency direction,
 - Project Zero positioning,
 - Program Increment 0 objectives,
+- artifact ownership,
 - and guiding engineering principles.
 
 CAT-001 does not define detailed AES requirements, AEMS implementation internals, repository template file contents, or Atarix operating-system architecture.
@@ -70,6 +71,40 @@ catylist -> AES -> AEMS -> repo_templates -> project repositories
 This diagram represents governance and consumption, not source-code linkage.
 
 The dependency direction should remain acyclic. Reusable standards belong in AES. Reusable automation belongs in AEMS. Reusable bootstrap assets belong in repo_templates. Project-specific artifacts remain in their project repositories.
+
+## Ownership Matrix
+
+Each engineering artifact should have exactly one authoritative owner. Other repositories may consume, validate, or provide feedback on that artifact, but they should not redefine it.
+
+| Artifact class | Authoritative owner | Consumers |
+|---|---|---|
+| Ecosystem vision | catylist | all repositories |
+| Program roadmap | catylist | all repositories |
+| Program increments | catylist | all repositories |
+| Cross-repository dependency graph | catylist | AES, AEMS, repo_templates, project repositories |
+| Engineering standards | AES | AEMS, repo_templates, project repositories |
+| Engineering lifecycle definitions | AES | AEMS, repo_templates, project repositories |
+| Project Zero standard | AES | AEMS, repo_templates, project repositories |
+| Repository manifest standard | AES | AEMS, repo_templates, project repositories |
+| Automation implementation | AEMS | repo_templates, project repositories |
+| Inventory generation | AEMS | all repositories |
+| Traceability automation | AEMS | all repositories |
+| Issue graph automation | AEMS | all repositories |
+| Certification automation | AEMS | all repositories |
+| Repository bootstrap layout | repo_templates | all new repositories |
+| Baseline workflows | repo_templates | all new repositories |
+| Baseline issue templates | repo_templates | all new repositories |
+| Operating-system architecture | Atarix | Atarix contributors, AEMS, JAG |
+| Engineering assistant behavior | JAG | engineers and project repositories |
+
+## Ownership Rules
+
+1. A project repository may validate a reusable concept, but should not become the long-term owner of that concept.
+2. If a rule applies to every repository, it belongs in AES.
+3. If a repeatable task can be automated for every repository, it belongs in AEMS.
+4. If a structure should exist in every new repository, it belongs in repo_templates.
+5. If a decision affects the ecosystem roadmap or cross-repository priorities, it belongs in catylist.
+6. If an artifact is specific to one product, it belongs in that product repository.
 
 ## Guiding Principles
 
