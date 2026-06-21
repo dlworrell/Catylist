@@ -36,6 +36,7 @@ CAT-001 covers:
 - Project Zero positioning,
 - Program Increment 0 objectives,
 - artifact ownership,
+- repository interface contracts,
 - and guiding engineering principles.
 
 CAT-001 does not define detailed AES requirements, AEMS implementation internals, repository template file contents, or Atarix operating-system architecture.
@@ -71,6 +72,104 @@ catylist -> AES -> AEMS -> repo_templates -> project repositories
 This diagram represents governance and consumption, not source-code linkage.
 
 The dependency direction should remain acyclic. Reusable standards belong in AES. Reusable automation belongs in AEMS. Reusable bootstrap assets belong in repo_templates. Project-specific artifacts remain in their project repositories.
+
+## Dependency Semantics
+
+The dependency model has three meanings:
+
+1. Governance dependency: lower layers should conform to the expectations set by higher layers.
+2. Artifact dependency: lower layers may consume artifacts owned by higher layers.
+3. Feedback dependency: lower layers may expose problems that require changes in higher layers, but they do not redefine higher-layer artifacts locally.
+
+A project may discover that an AES standard is incomplete, that AEMS automation is missing, or that repo_templates lacks a bootstrap asset. In those cases, the project should create feedback in the owning repository rather than permanently solving the general problem locally.
+
+## Repository Interface Contracts
+
+Each repository has a simple ecosystem contract:
+
+1. Own only the artifacts for which it is authoritative.
+2. Declare what it consumes from other repositories.
+3. Export reusable artifacts only from the proper ownership layer.
+4. Keep project-specific material out of shared layers.
+5. Provide evidence for any Project Zero or Engineering Ready claim.
+
+### catylist Interface
+
+catylist consumes status and evidence from every repository.
+
+catylist exports:
+
+- ecosystem vision,
+- program roadmap,
+- Program Increment definitions,
+- cross-repository dependency maps,
+- risk registers,
+- and cross-repository governance decisions.
+
+catylist must not redefine AES standards, AEMS implementation, repo_templates bootstrap assets, or product-specific architecture.
+
+### AES Interface
+
+AES consumes governance direction from catylist.
+
+AES exports:
+
+- engineering standards,
+- lifecycle definitions,
+- Project Zero definitions,
+- manifest standards,
+- metadata standards,
+- traceability standards,
+- and certification standards.
+
+AES must not contain automation implementation or project-specific design.
+
+### AEMS Interface
+
+AEMS consumes AES standards and catylist program context.
+
+AEMS exports:
+
+- automation tools,
+- repository inspection results,
+- inventory generation,
+- traceability generation,
+- issue graph generation,
+- validation reports,
+- and certification reports.
+
+AEMS must not define engineering rules independently of AES.
+
+### repo_templates Interface
+
+repo_templates consumes AES standards and AEMS automation expectations.
+
+repo_templates exports:
+
+- baseline repository structure,
+- default manifests,
+- Project Zero scaffolding,
+- baseline workflows,
+- issue templates,
+- pull request templates,
+- labels,
+- and repository bootstrap assets.
+
+repo_templates must not contain product-specific architecture.
+
+### Project Repository Interface
+
+Project repositories consume catylist governance, AES standards, AEMS automation, and repo_templates bootstrap assets.
+
+Project repositories export:
+
+- product-specific architecture,
+- implementation,
+- verification evidence,
+- Project Zero evidence,
+- and feedback to shared layers.
+
+Project repositories should validate the ecosystem but should not become owners of reusable standards, automation, or templates.
 
 ## Ownership Matrix
 
