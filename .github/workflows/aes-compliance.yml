@@ -1,0 +1,52 @@
+name: AES compliance
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Catylist
+        uses: actions/checkout@v4
+        with:
+          path: repository
+
+      - name: Check out AEMS scanners
+        uses: actions/checkout@v4
+        with:
+          repository: dlworrell/AEMS
+          path: aems
+
+      - name: Run AES-DEV-001 scanner
+        run: |
+          mkdir -p reports
+          python3 aems/scripts/aes_dev_001_scan.py repository \
+            --repo-name dlworrell/Catylist \
+            --format markdown > reports/aes-dev-001.md
+          python3 aems/scripts/aes_dev_001_scan.py repository \
+            --repo-name dlworrell/Catylist \
+            --strict
+
+      - name: Run AES-SEC-001 scanner
+        run: |
+          python3 aems/scripts/aes_sec_001_scan.py repository \
+            --repo-name dlworrell/Catylist \
+            --format markdown > reports/aes-sec-001.md
+          python3 aems/scripts/aes_sec_001_scan.py repository \
+            --repo-name dlworrell/Catylist \
+            --strict
+
+      - name: Upload compliance reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catylist-aes-compliance
+          path: reports/
