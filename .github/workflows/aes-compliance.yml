@@ -25,28 +25,92 @@ jobs:
           repository: dlworrell/AEMS
           path: aems
 
-      - name: Run AES-DEV-001 scanner
+      - name: Check out AES standards
+        uses: actions/checkout@v4
+        with:
+          repository: dlworrell/AES
+          path: aes
+
+      - name: Record evidence metadata
+        id: metadata
+        shell: bash
         run: |
-          mkdir -p reports
+          echo "subject_sha=$(git -C repository rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "scanner_sha=$(git -C aems rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "standard_sha=$(git -C aes rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Generate AES-DEV-001 evidence
+        shell: bash
+        run: |
+          mkdir -p reports/raw
           python3 aems/scripts/aes_dev_001_scan.py repository \
             --repo-name dlworrell/Catylist \
             --format markdown > reports/aes-dev-001.md
           python3 aems/scripts/aes_dev_001_scan.py repository \
             --repo-name dlworrell/Catylist \
-            --strict
+            --format json > reports/raw/aes-dev-001.json
+          passed=$(python3 -c 'import json; print(str(json.load(open("reports/raw/aes-dev-001.json"))["summary"]["ready_for_ratchet"]).lower())')
+          python3 aems/scripts/package_compliance_evidence.py \
+            --input reports/raw/aes-dev-001.json \
+            --output reports/aes-dev-001.json \
+            --standard AES-DEV-001 \
+            --standard-version "${{ steps.metadata.outputs.standard_sha }}" \
+            --repository dlworrell/Catylist \
+            --commit-sha "${{ steps.metadata.outputs.subject_sha }}" \
+            --scanner-commit-sha "${{ steps.metadata.outputs.scanner_sha }}" \
+            --passed "$passed"
 
-      - name: Run AES-SEC-001 scanner
+      - name: Generate AES-SEC-001 evidence
+        shell: bash
         run: |
           python3 aems/scripts/aes_sec_001_scan.py repository \
             --repo-name dlworrell/Catylist \
             --format markdown > reports/aes-sec-001.md
           python3 aems/scripts/aes_sec_001_scan.py repository \
             --repo-name dlworrell/Catylist \
-            --strict
+            --format json > reports/raw/aes-sec-001.json
+          passed=$(python3 -c 'import json; print(str(json.load(open("reports/raw/aes-sec-001.json"))["summary"]["passes_minimum_adoption_gate"]).lower())')
+          python3 aems/scripts/package_compliance_evidence.py \
+            --input reports/raw/aes-sec-001.json \
+            --output reports/aes-sec-001.json \
+            --standard AES-SEC-001 \
+            --standard-version "${{ steps.metadata.outputs.standard_sha }}" \
+            --repository dlworrell/Catylist \
+            --commit-sha "${{ steps.metadata.outputs.subject_sha }}" \
+            --scanner-commit-sha "${{ steps.metadata.outputs.scanner_sha }}" \
+            --passed "$passed"
 
-      - name: Upload compliance reports
+      - name: Upload compliance evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: catylist-aes-compliance
-          path: reports/
+          path: |
+            reports/aes-dev-001.md
+            reports/aes-dev-001.json
+            reports/aes-sec-001.md
+            reports/aes-sec-001.json
+          if-no-files-found: error
+
+      - name: Enforce AES compliance gates
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+
+          paths = (
+              "reports/aes-dev-001.json",
+              "reports/aes-sec-001.json",
+          )
+          failed = []
+          for path in paths:
+              with open(path, encoding="utf-8") as handle:
+                  evidence = json.load(handle)
+              if not evidence["scan"]["passed"]:
+                  failed.append(evidence["standard"]["id"])
+
+          if failed:
+              print("Compliance gates failed: " + ", ".join(failed), file=sys.stderr)
+              raise SystemExit(1)
+          PY
