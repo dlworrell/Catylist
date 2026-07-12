@@ -1,0 +1,38 @@
+schema_version: 1
+repository:
+  name: Catylist
+  full_name: dlworrell/Catylist
+  role: program-umbrella-and-managing-organization
+  ownership: project-owned
+  lifecycle: active
+  default_branch: main
+authority:
+  documentation: local
+  architecture_paths:
+    - docs/architecture
+  specification_paths:
+    - docs
+  adr_paths:
+    - docs/adr
+  engineering_paths:
+    - docs/engineering
+standards:
+  development:
+    id: AES-DEV-001
+    profile: docs/engineering/AES-DEV-001-development-principles.md
+  security:
+    id: AES-SEC-001
+    profile: docs/engineering/SECURE-C-CXX.md
+    waiver_log: docs/engineering/AES-SEC-001-waivers.md
+relationships:
+  standards_repository: dlworrell/AES
+  enforcement_repository: dlworrell/AEMS
+  template_repository: dlworrell/repo_templates
+  bootstrap_repository: dlworrell/P0
+  optimization_repository: dlworrell/evo
+  reference_system_repository: dlworrell/atarix
+acceptance:
+  require_architecture_for_major_changes: true
+  require_documentation_with_behavior_changes: true
+  require_adr_for_major_decisions: true
+  require_security_review_for_trust_boundary_changes: true
