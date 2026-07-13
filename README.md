@@ -15,10 +15,11 @@ Catylist owns:
 - program-level architectural decision records;
 - authoritative descriptions of governed repositories.
 
-Catylist does not replace project-local authority. AES owns engineering standards, AEMS owns assessment and enforcement automation, `repo_templates` owns reusable repository scaffolding, P0 owns bootstrap execution, EVO owns evolutionary optimization infrastructure, and Atarix owns its operating-system architecture and implementation.
+Catylist does not replace project-local authority. AES owns engineering standards, AEMS owns engineering project management and orchestration, P0 owns repository initiation, inspection, remediation, and readiness assessment, `repo_templates` owns reusable repository scaffolding, EDT owns semantic document engineering, EVO owns evolutionary optimization infrastructure, and Atarix owns its operating-system architecture and implementation.
 
 ## Governance entry points
 
+- [CAT-001 — Catalyst System Architecture](docs/architecture/CAT-001-Catalyst-System-Architecture.md)
 - [Catalyst ecosystem architecture](docs/architecture/catalyst-ecosystem.md)
 - [Governance model](docs/architecture/governance-model.md)
 - [Repository taxonomy](docs/architecture/repository-taxonomy.md)
