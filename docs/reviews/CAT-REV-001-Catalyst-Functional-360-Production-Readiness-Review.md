@@ -11,6 +11,14 @@ This review evaluates the Catalyst ecosystem as one governed engineering system.
 
 The review is not a collection of README impressions. A repository receives credit only where declared intent, implemented realization, and retained evidence agree.
 
+CAT-REV-001 is governed by CAT-002 — Engineering Representation, Closure, and Recovery. Production readiness is a derived conclusion: required production-profile claims are closed at the required Evidence level, with authoritative Intent, applicable Realization, preserved transformations, and no unresolved mandatory divergence.
+
+See:
+
+- `CAT-REV-001-Architectural-Reconciliation-CAT-002.md`
+- `CAT-REV-001-workstream-continuity.yaml`
+- `CAT-REV-002-Post-P0-Functional-Closure-Review-Plan.md`
+
 ## 2. Closure rule
 
 A production-readiness claim requires:
@@ -90,6 +98,8 @@ Every full-review repository is assessed against the same production baseline:
 
 ## 5. Production maturity scale
 
+This scale is supporting metadata for navigation and planning. It does not supersede CAT-002 closure states and cannot independently qualify a repository or workflow for production.
+
 | Level | Meaning |
 |---|---|
 | 0 — Undefined | Identity, authority, or scope is absent or contradictory. |
@@ -99,7 +109,7 @@ Every full-review repository is assessed against the same production baseline:
 | 4 — Production candidate | Required contracts are implemented and evidenced; final cross-system qualification remains. |
 | 5 — Production | Intent, realization, evidence, release, operations, and recovery are complete and continuously enforced. |
 
-The ecosystem is not production-level until every mandatory repository and every mandatory end-to-end workflow reaches the agreed target level. High maturity in one project does not compensate for a broken authority or enforcement link elsewhere.
+The ecosystem is not production-level until every mandatory repository and every mandatory end-to-end workflow reaches the agreed target and all mandatory production-profile claims satisfy CAT-002 closure requirements. High maturity in one project does not compensate for a broken authority or enforcement link elsewhere.
 
 ## 6. Initial observations
 
@@ -156,8 +166,8 @@ These observations establish the starting hypothesis and must be verified during
 - State: Observed
 - Claim: Repositories use terms such as active, foundation, bootstrap, stable, mature, complete, feature-complete, and production milestone without one shared definition.
 - Consequence: Status language cannot be compared or used as a release gate.
-- Required correction: Adopt the maturity scale in this review or supersede it with an approved equivalent.
-- Closure evidence: Every governed repository declares target and current maturity using the same schema and links claims to evidence.
+- Required correction: Adopt the maturity scale in this review or supersede it with an approved equivalent, while using CAT-002 claim-relative closure as the governing production gate.
+- Closure evidence: Every governed repository declares target and current maturity using the same schema and links each production claim to authoritative Intent, applicable Realization, Evidence, and closure state.
 
 ### CAT-FND-007 — EDT release claim and normative documentation are misaligned
 
@@ -177,9 +187,18 @@ These observations establish the starting hypothesis and must be verified during
 - Required correction: Classify each as mandatory, optional, experimental, or deferred for the first Catalyst production baseline.
 - Closure evidence: Catylist dependency graph and release profile state whether each participates in the minimum supported production path.
 
+### CAT-FND-009 — Architectural decision continuity is not reliably preserved
+
+- Priority: P0
+- State: Observed; corrected for this review, system remediation remains open
+- Claim: A merged governing architecture and its ATARIX adoption were temporarily treated as absent during continuation of CAT-REV-001.
+- Consequence: Document numbering was misidentified, a competing readiness theory began to emerge, and implementation planning drifted from authoritative decisions.
+- Required correction: Maintain a canonical decision register, active-workstream continuity record, session handoff record, and mandatory preflight reading of governing decisions and active PR state.
+- Closure evidence: A fresh session reconstructs the governing architecture, current workstream state, next action, and prohibited assumptions without conversational memory.
+
 ## 7. Initial maturity hypothesis
 
-This table is provisional and may only be upgraded with evidence.
+This table is provisional, supporting metadata and may only be upgraded with evidence. It does not replace claim-relative closure assessment.
 
 | Repository | Initial level | Confidence | Main blocker |
 |---|---:|---|---|
@@ -231,6 +250,10 @@ Atarix requirements -> realization -> emulator evidence -> hardware evidence -> 
 
 Dependency identification -> license and provenance -> version pinning -> integrity verification -> vulnerability/update policy -> reproducible consumption.
 
+### WF-009 — Workstream continuity and recovery
+
+Authoritative decisions -> continuity record -> fresh-session preflight -> reconstructed active state -> verified next action -> retained handoff evidence.
+
 ## 9. Punch-list structure
 
 Every actionable item will use this record:
@@ -250,69 +273,90 @@ Every actionable item will use this record:
 | Effort | Relative estimate |
 | Confidence | High, medium, or low |
 | State | Open, blocked, in progress, verified, closed |
+| Claims | Production claims affected |
+| Representations | Intent, Realization, Evidence affected |
+| Transformations | Required or divergent transformations |
+| Evidence level | Minimum E0-E6 level required |
+| Recovery class | Observed, Corrected, Reconstructed, Inferred, or Indeterminate |
 
 ## 10. Initial ordered punch list
 
-### Wave 0 — Stop authority drift
+### Wave 0 — Stop authority and continuity drift
 
 1. `CAT-PL-0001` — Correct and specify P0 identity and authority. P0.
 2. `CAT-PL-0002` — Freeze the canonical Catalyst repository-role taxonomy. P0.
 3. `CAT-PL-0003` — Define one versioned ecosystem manifest and relationship schema. P0.
-4. `CAT-PL-0004` — Define shared lifecycle and maturity vocabulary. P0.
+4. `CAT-PL-0004` — Define shared lifecycle and supporting maturity vocabulary without superseding CAT-002 closure states. P0.
 5. `CAT-PL-0005` — Inventory every governed repository, dependency, owner, role, lifecycle, and production requirement. P0.
+6. `CAT-PL-0006` — Adopt canonical decision, workstream continuity, and session handoff records. P0.
 
-### Wave 1 — Make standards consumable and enforcement executable
+### Wave 1 — Make CAT-002 representations and standards executable
 
-6. `CAT-PL-0101` — Publish the AES machine-readable standards index and standard schema. P0.
-7. `CAT-PL-0102` — Define the AEMS assessment input/output/report contract. P0.
-8. `CAT-PL-0103` — Implement deterministic AEMS evaluation of repository manifests and required profiles. P0.
-9. `CAT-PL-0104` — Define waiver ownership, scope, expiration, and evidence. P0.
-10. `CAT-PL-0105` — Produce a consolidated ecosystem assessment command and report. P0.
+7. `CAT-PL-0101` — Publish the AES machine-readable standards index and standard schema. P0.
+8. `CAT-PL-0102` — Define canonical representation, claim, transformation, closure-state, recovery, and Evidence schemas. P0.
+9. `CAT-PL-0103` — Define the AEMS assessment input/output/report contract. P0.
+10. `CAT-PL-0104` — Implement deterministic AEMS evaluation of repository manifests and required profiles. P0.
+11. `CAT-PL-0105` — Define waiver ownership, scope, expiration, and evidence. P0.
+12. `CAT-PL-0106` — Produce a consolidated ecosystem assessment command and Engineering Closure Report. P0.
 
 ### Wave 2 — Establish a proven repository baseline
 
-11. `CAT-PL-0201` — Select and freeze mandatory repo_templates v1 repository classes. P0.
-12. `CAT-PL-0202` — Add template-generation golden fixtures. P0.
-13. `CAT-PL-0203` — Require every generated fixture to pass AEMS without local exceptions. P0.
-14. `CAT-PL-0204` — Implement P0 clean bootstrap and existing-repository remediation workflows. P0.
-15. `CAT-PL-0205` — Define drift detection and template-upgrade policy. P1.
+13. `CAT-PL-0201` — Select and freeze mandatory repo_templates v1 repository classes. P0.
+14. `CAT-PL-0202` — Add template-generation golden fixtures. P0.
+15. `CAT-PL-0203` — Require every generated fixture to pass AEMS without local exceptions. P0.
+16. `CAT-PL-0204` — Implement P0 clean bootstrap and existing-repository remediation workflows. P0.
+17. `CAT-PL-0205` — Define drift detection and template-upgrade policy. P1.
+18. `CAT-PL-0206` — Add a legacy-remediation fixture that includes ambiguous Intent and mandatory human authority. P0.
 
 ### Wave 3 — Normalize existing repositories
 
-16. `CAT-PL-0301` — Bring Catylist to the proven baseline. P0.
-17. `CAT-PL-0302` — Bring AES to the proven baseline. P0.
-18. `CAT-PL-0303` — Bring AEMS to the proven baseline. P0.
-19. `CAT-PL-0304` — Bring P0 to the proven baseline. P0.
-20. `CAT-PL-0305` — Bring repo_templates to its own generated baseline. P0.
-21. `CAT-PL-0306` — Normalize EDT and qualify its declared 1.0 release class. P1.
-22. `CAT-PL-0307` — Classify and normalize EWT and EVO according to the first production profile. P1/P2.
-23. `CAT-PL-0308` — Normalize Atarix without resuming new feature work. P1.
-24. `CAT-PL-0309` — Normalize HERKULES, JAG, and Just-a-Geek-LLC according to role. P1.
+19. `CAT-PL-0301` — Bring Catylist to the minimum production profile. P0.
+20. `CAT-PL-0302` — Bring AES to the minimum production profile. P0.
+21. `CAT-PL-0303` — Bring AEMS to the minimum production profile. P0.
+22. `CAT-PL-0304` — Bring P0 to the minimum production profile. P0.
+23. `CAT-PL-0305` — Bring repo_templates to the minimum production profile. P0.
+24. `CAT-PL-0306` — Align EDT release intent, realization, evidence, and publication workflow. P1.
+25. `CAT-PL-0307` — Define EWT and EVO applicability in the first production profile. P1.
 
-### Wave 4 — Prove the system
+### Wave 4 — Qualify the system
 
-25. `CAT-PL-0401` — Execute WF-001 through WF-008 and retain evidence. P0.
-26. `CAT-PL-0402` — Run a clean-room bootstrap from no repository to passing governed project. P0.
-27. `CAT-PL-0403` — Run a deliberate nonconformance and remediation exercise. P0.
-28. `CAT-PL-0404` — Run a standards revision propagation exercise. P1.
-29. `CAT-PL-0405` — Produce a signed or integrity-pinned production-readiness evidence bundle. P1.
+26. `CAT-PL-0401` — Execute governance-to-enforcement qualification. P0.
+27. `CAT-PL-0402` — Execute clean-bootstrap qualification. P0.
+28. `CAT-PL-0403` — Execute legacy-remediation qualification. P0.
+29. `CAT-PL-0404` — Execute standards-propagation qualification. P0.
+30. `CAT-PL-0405` — Execute release and rollback qualification. P0.
+31. `CAT-PL-0406` — Execute ATARIX and ATX-BIB-001 reference qualification without falsifying missing E5 hardware evidence. P0.
+32. `CAT-PL-0407` — Execute workstream continuity recovery from a fresh session. P0.
+33. `CAT-PL-0408` — Conduct CAT-REV-002 post-P0 functional closure review. P0.
 
-## 11. Review execution plan
+## 11. Review artifacts
 
-The review proceeds in evidence-preserving increments:
+The review will produce:
 
-1. inventory and identity census;
-2. manifest and authority census;
-3. CI, test, build, security, and release census;
-4. repository-by-repository functional review;
-5. cross-repository contract review;
-6. execution of mandatory workflows;
-7. final maturity matrix and ordered remediation plan.
+- authoritative repository inventory;
+- repository relationship and authority graph;
+- manifest/schema compatibility matrix;
+- standards coverage matrix;
+- CI and branch-protection matrix;
+- evidence and retention matrix;
+- release and operations matrix;
+- workflow qualification records;
+- CAT-002 closure profiles;
+- ordered production punch list;
+- final production-readiness decision;
+- post-P0 functional closure review evidence.
 
-No finding is closed merely by editing this document. Closure requires the corrective change in the owning repository and independent verification through the appropriate system path.
+## 12. Review closure
 
-## 12. Current review state
+CAT-REV-001 closes only when:
 
-The review is **OPEN**.
+1. every in-scope repository has an evidence-backed assessment;
+2. every mandatory workflow has an assessed closure profile;
+3. all findings are mapped to CAT-002 claims, representations, transformations, Evidence levels, and recovery classes;
+4. the complete punch list is dependency-ordered;
+5. production targets and closure criteria are explicit;
+6. continuity records permit a fresh session to reconstruct the workstream without chat history;
+7. the post-P0 functional review plan is approved;
+8. no conclusion is represented as verified where evidence is absent.
 
-Atarix feature development remains paused. Corrective work necessary to make Atarix conform to the emerging common baseline may proceed only after the baseline authority and verification path are defined.
+Closing CAT-REV-001 does not declare the ecosystem production-ready. It establishes the authoritative assessment and execution plan. The Catalyst production baseline may be declared only after the required remediation and CAT-REV-002 qualification are complete.
