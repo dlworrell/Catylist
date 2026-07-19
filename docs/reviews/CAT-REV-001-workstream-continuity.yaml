@@ -1,0 +1,138 @@
+schema: catalyst.workstream-continuity.v1
+
+workstream:
+  id: CAT-REV-001
+  title: Catalyst Functional 360-Degree Review
+  owner: Catylist
+  repository: dlworrell/Catylist
+  branch: cat-rev-001-system-360
+  pull_request: 3
+  state: architectural_reconciliation
+
+  purpose: >-
+    Assess the Catalyst ecosystem as one governed engineering system and
+    produce an evidence-backed, dependency-ordered path to an explicit
+    production baseline derived from CAT-002 closure semantics.
+
+  governing_architecture:
+    - id: CAT-000
+      role: Catalyst architecture entry point
+    - id: CAT-001
+      role: Catalyst System Architecture
+    - id: CAT-002
+      role: Engineering Representation, Closure, and Recovery
+
+  authoritative_decisions:
+    - id: DEC-2026-07-19-001
+      claim: CAT-002 governs representation, closure, transformation, recovery, and evidence semantics throughout Catalyst.
+      source:
+        repository: dlworrell/Catylist
+        pull_request: 2
+        merge_commit: 449e896b8688e2a3cc136b5ff285bf414bc36ece
+
+    - id: DEC-2026-07-19-002
+      claim: ATARIX adopts the closure-based development cycle and serves as the initial practical proving ground.
+      source:
+        repository: dlworrell/atarix
+        pull_request: 43
+        merge_commit: e36309387c4b3d6fb20907e0bae0a33365b1d059
+
+    - id: DEC-2026-07-19-003
+      claim: ATX-BIB-001 is the first pilot closure unit; emulator evidence is retained and independently verified while physical hardware evidence remains open.
+      source:
+        repository: dlworrell/atarix
+        pull_requests:
+          - 45
+          - 46
+          - 47
+          - 48
+          - 49
+          - 50
+          - 51
+          - 52
+
+    - id: DEC-2026-07-19-004
+      claim: ATARIX feature development remains paused while the Catalyst production baseline and resumption gate are established.
+      source:
+        repository: dlworrell/Catylist
+        pull_request: 3
+
+  canonical_vocabulary:
+    representations:
+      - Intent
+      - Realization
+      - Evidence
+    closure_states:
+      - OPEN
+      - VERIFYING
+      - DIVERGENT
+      - CLOSED
+      - INDETERMINATE
+    recovery_classes:
+      - Observed
+      - Corrected
+      - Reconstructed
+      - Inferred
+      - Indeterminate
+    evidence_levels:
+      E0: Source checks
+      E1: Unit or component tests
+      E2: Emulator or reference-model tests
+      E3: RTL simulation
+      E4: Cross-implementation comparison
+      E5: FPGA or physical hardware execution
+      E6: System integration
+
+  current_state:
+    completed:
+      - baseline review framework
+      - repository inventory and identity census
+      - manifest and authority census
+      - repository taxonomy assessment
+      - ecosystem manifest contract assessment
+      - CI/CD and evidence pipeline assessment
+      - end-to-end workflow assessment
+      - production-readiness matrix and ordered punch list
+      - CAT-002 architectural reconciliation
+    active:
+      - remap readiness findings and gates to CAT-002
+      - establish continuity controls
+      - define post-P0 functional closure review
+    blocked:
+      - production-baseline declaration
+      - unrestricted ATARIX feature resumption
+
+  next_actions:
+    - adopt this continuity record as mandatory session preflight
+    - complete the post-P0 functional closure review specification
+    - update remaining review documents to defer to CAT-002
+    - define machine-readable closure and transformation contracts
+
+  prohibited_assumptions:
+    - CAT-001 is available for reassignment
+    - CAT-002 remains conversational or unmerged
+    - production readiness may be defined independently of CAT-002
+    - successful CI alone proves engineering closure
+    - low closure necessarily indicates defective development
+    - normative Intent may be silently inferred from observed behavior
+    - missing physical evidence may be represented as complete
+
+  session_preflight:
+    required_reads:
+      - docs/reviews/CAT-REV-001-workstream-continuity.yaml
+      - docs/reviews/CAT-REV-001-Architectural-Reconciliation-CAT-002.md
+      - active pull-request description and latest commits
+      - governing CAT-000, CAT-001, and CAT-002 documents
+    required_checks:
+      - confirm active branch and pull request
+      - confirm latest authoritative decision
+      - identify current closure state and next action
+      - check for conflicts with prohibited assumptions
+      - record any reconstructed or inferred context explicitly
+
+  handoff_requirements:
+    - summarize completed work with commit identifiers
+    - identify all intentionally open claims
+    - preserve unresolved divergence and indeterminate items
+    - state the exact next smallest closure increment
+    - never rely on chat history as the sole source of authority
