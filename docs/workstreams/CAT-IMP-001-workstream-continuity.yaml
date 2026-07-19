@@ -1,0 +1,114 @@
+schema: catalyst.workstream-continuity.v1
+
+workstream:
+  id: CAT-IMP-001
+  title: Canonical Engineering Closure Contracts
+  owner: Catylist
+  repository: dlworrell/Catylist
+  branch: cat-imp-001-closure-contracts
+  state: implementation
+
+  purpose: >-
+    Define the first common machine-readable contract through which Catalyst
+    repositories and tools exchange claim-relative Intent, Realization,
+    Evidence, transformation, recovery, provenance, and closure metadata.
+
+  governing_architecture:
+    - id: CAT-001
+      role: Catalyst System Architecture
+    - id: CAT-002
+      role: Engineering Representation, Closure, and Recovery
+    - id: CAT-REV-001
+      role: Catalyst Functional 360-Degree Review and ordered execution baseline
+
+  authoritative_decisions:
+    - id: DEC-2026-07-19-001
+      claim: CAT-002 governs representation, closure, transformation, recovery, and evidence semantics throughout Catalyst.
+      source:
+        repository: dlworrell/Catylist
+        pull_request: 2
+        merge_commit: 449e896b8688e2a3cc136b5ff285bf414bc36ece
+
+    - id: DEC-2026-07-19-005
+      claim: CAT-REV-001 is merged and production readiness is a derived conclusion from claim-relative closure.
+      source:
+        repository: dlworrell/Catylist
+        pull_request: 3
+        merge_commit: 1126a7b8643588ef0c24ffb0f241acccb982a6f3
+
+    - id: DEC-2026-07-19-006
+      claim: The first post-review implementation increment is the canonical engineering closure metadata contract and schema.
+      source:
+        repository: dlworrell/Catylist
+        branch: cat-imp-001-closure-contracts
+
+  closure_unit:
+    id: CAT-CON-001-SCHEMA-001
+    claim: >-
+      Catalyst has a reviewable common contract and validated JSON Schema for
+      representing one claim-relative engineering closure unit.
+    state: VERIFYING
+    required_evidence_level: E0
+
+  current_state:
+    completed:
+      - CAT-CON-001 contract draft
+      - engineering closure JSON Schema v1 draft
+      - closed-profile positive fixture
+      - unsupported-closure negative fixture
+      - deterministic fixture validator
+      - pull-request validation workflow
+    active:
+      - independent CI execution
+      - schema and semantic review
+      - replacement of provisional branch identities with immutable merge provenance
+    blocked:
+      - AEMS implementation against the contract
+      - P0 generation and recovery integration
+      - ecosystem-wide closure reporting
+      - production-baseline declaration
+
+  intentionally_open_claims:
+    - The common schema has not yet been adopted by AES, AEMS, P0, repo_templates, EDT, EVO, EWT, or governed projects.
+    - Structural JSON Schema validation does not prove semantic completeness.
+    - Cross-repository compatibility and migration behavior remain untested.
+    - The ATARIX pilot has not yet been encoded as a common-schema conformance fixture.
+    - Production readiness remains open.
+
+  next_actions:
+    - open a bounded pull request from cat-imp-001-closure-contracts to main
+    - require documentation, AES compliance, and closure-schema validation checks
+    - review schema vocabulary against CAT-002 without assigning new normative meaning
+    - add an ATARIX closure-unit fixture in a subsequent project-owned integration increment
+    - after merge, assign implementation work to AES, AEMS, P0, and repo_templates through their owning repositories
+
+  prohibited_assumptions:
+    - CAT-CON-001 replaces CAT-002
+    - schema conformance proves engineering closure
+    - CLOSED may coexist with an unresolved mandatory divergence or open mandatory gap
+    - a recovered representation is normative without explicit adoption
+    - evidence level alone determines sufficiency
+    - a mutable branch reference is sufficient final closure provenance
+    - downstream repositories have adopted this contract before their own reviewed changes merge
+
+  session_preflight:
+    required_reads:
+      - docs/workstreams/CAT-IMP-001-workstream-continuity.yaml
+      - docs/contracts/CAT-CON-001-Engineering-Closure-Metadata-Contract.md
+      - schemas/catalyst/engineering-closure-v1.schema.json
+      - docs/architecture/CAT-002-Engineering-Representation-Closure-and-Recovery.md
+      - docs/reviews/CAT-REV-001-workstream-continuity.yaml
+      - active pull-request description and latest commits
+    required_checks:
+      - confirm active branch and pull request
+      - confirm CI state and exact head commit
+      - identify the next smallest closure increment
+      - preserve all intentionally open claims
+      - reject any unsupported closure claim
+
+  handoff_requirements:
+    - record commit and pull-request identifiers
+    - state CI outcomes and evidence limitations
+    - identify all intentionally open claims
+    - preserve unresolved divergence and indeterminate items
+    - state the exact next repository-owned integration increment
