@@ -1,0 +1,80 @@
+{
+  "schema": "catalyst.engineering-closure.v1",
+  "closure_unit": {
+    "id": "INVALID-CLOSED-OPEN-GAP",
+    "claim": "This intentionally invalid fixture attempts to close a claim while a mandatory gap remains open.",
+    "scope": "Negative schema-validation fixture.",
+    "owner": "Catylist",
+    "state": "CLOSED",
+    "representations": [
+      {
+        "id": "intent.invalid",
+        "class": "intent",
+        "title": "Invalid fixture intent",
+        "authority": "normative",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "location": "examples/closure/invalid/engineering-closure-v1.closed-with-open-gap.json",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ]
+      },
+      {
+        "id": "realization.invalid",
+        "class": "realization",
+        "title": "Invalid fixture realization",
+        "authority": "delegated",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "location": "schemas/catalyst/engineering-closure-v1.schema.json",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ]
+      },
+      {
+        "id": "evidence.invalid",
+        "class": "evidence",
+        "title": "Invalid fixture evidence",
+        "authority": "generated",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "location": "examples/closure/invalid/engineering-closure-v1.closed-with-open-gap.json",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ],
+        "supports": ["intent.invalid", "realization.invalid"],
+        "required_level": "E0",
+        "achieved_level": "E0",
+        "method": "Intentional negative fixture.",
+        "result": "passed"
+      }
+    ],
+    "transformations": [],
+    "assumptions": [],
+    "exclusions": [],
+    "gaps": [
+      {
+        "id": "gap.mandatory",
+        "description": "A mandatory open gap must prevent CLOSED state.",
+        "mandatory": true,
+        "state": "open"
+      }
+    ],
+    "provenance": [
+      {
+        "location": "schemas/catalyst/engineering-closure-v1.schema.json",
+        "revision": "cat-imp-001-closure-contracts"
+      }
+    ],
+    "decision": {
+      "state": "CLOSED",
+      "authority": "Invalid fixture",
+      "decided_at": "2026-07-19T22:00:00Z",
+      "record_revision": "cat-imp-001-closure-contracts",
+      "rationale": "This decision is intentionally unsupported and must be rejected."
+    }
+  }
+}
