@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://catalyst.example/schemas/catalyst/engineering-closure-v1.schema.json",
+  "title": "Catalyst Engineering Closure Record v1",
+  "description": "Claim-relative engineering closure metadata governed by CAT-002 and CAT-CON-001.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "closure_unit"],
+  "properties": {
+    "schema": {
+      "const": "catalyst.engineering-closure.v1"
+    },
+    "closure_unit": {
+      "$ref": "#/$defs/closureUnit"
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "uriOrPath": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "enum": ["high", "medium", "low", "unknown"]
+    },
+    "authority": {
+      "enum": ["normative", "delegated", "descriptive", "recovered", "generated", "unknown"]
+    },
+    "disposition": {
+      "enum": ["required", "deferred", "not_applicable", "optional"]
+    },
+    "recoveryClass": {
+      "enum": ["R0_OBSERVED", "R1_CORRECTED", "R2_RECONSTRUCTED", "R3_INFERRED", "RX_INDETERMINATE"]
+    },
+    "evidenceLevel": {
+      "enum": ["E0", "E1", "E2", "E3", "E4", "E5", "E6"]
+    },
+    "artifactReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["location"],
+      "properties": {
+        "repository": { "$ref": "#/$defs/nonEmptyString" },
+        "location": { "$ref": "#/$defs/uriOrPath" },
+        "revision": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "$ref": "#/$defs/nonEmptyString" },
+        "media_type": { "$ref": "#/$defs/nonEmptyString" },
+        "version": { "$ref": "#/$defs/nonEmptyString" },
+        "mutable_navigation_reference": { "type": "boolean", "default": false }
+      },
+      "anyOf": [
+        { "required": ["revision"] },
+        { "required": ["digest"] },
+        {
+          "properties": {
+            "mutable_navigation_reference": { "const": true }
+          },
+          "required": ["mutable_navigation_reference"]
+        }
+      ]
+    },
+    "representation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "class", "title", "authority", "disposition"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "class": { "enum": ["intent", "realization", "evidence"] },
+        "title": { "$ref": "#/$defs/nonEmptyString" },
+        "description": { "type": "string" },
+        "authority": { "$ref": "#/$defs/authority" },
+        "disposition": { "$ref": "#/$defs/disposition" },
+        "artifacts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifactReference" },
+          "minItems": 1
+        },
+        "recovery_class": { "$ref": "#/$defs/recoveryClass" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "limitations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true
+        },
+        "supports": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true
+        },
+        "required_level": { "$ref": "#/$defs/evidenceLevel" },
+        "achieved_level": { "$ref": "#/$defs/evidenceLevel" },
+        "method": { "type": "string" },
+        "result": {
+          "enum": ["not_run", "passed", "failed", "inconclusive", "not_applicable"]
+        },
+        "environment": { "type": "object" },
+        "valid_from": { "type": "string", "format": "date-time" },
+        "valid_until": { "type": "string", "format": "date-time" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "class": { "const": "evidence" } },
+            "required": ["class"]
+          },
+          "then": {
+            "required": ["supports", "required_level", "result", "method"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "authority": { "enum": ["recovered", "descriptive"] }
+            },
+            "required": ["authority"]
+          },
+          "then": {
+            "required": ["recovery_class", "confidence"]
+          }
+        }
+      ]
+    },
+    "toolReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "$ref": "#/$defs/nonEmptyString" },
+        "version": { "$ref": "#/$defs/nonEmptyString" },
+        "digest": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "transformation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "inputs", "outputs", "method", "output_authority", "determinism", "reversibility", "verification_status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "inputs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "outputs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "method": { "$ref": "#/$defs/nonEmptyString" },
+        "tools": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/toolReference" },
+          "uniqueItems": true
+        },
+        "configuration": { "type": "object" },
+        "assumptions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true
+        },
+        "output_authority": { "$ref": "#/$defs/authority" },
+        "determinism": { "enum": ["deterministic", "nondeterministic", "conditional", "unknown"] },
+        "reversibility": { "enum": ["reversible", "partially_reversible", "irreversible", "unknown"] },
+        "information_loss": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true
+        },
+        "provenance": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifactReference" },
+          "minItems": 1
+        },
+        "verification_status": { "enum": ["unverified", "verified", "failed", "inconclusive"] }
+      }
+    },
+    "gap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "mandatory", "state"],
+      "properties": {
+        "id": { "$ref": "#/$defs/nonEmptyString" },
+        "description": { "$ref": "#/$defs/nonEmptyString" },
+        "mandatory": { "type": "boolean" },
+        "state": { "enum": ["open", "blocked", "resolved", "accepted"] },
+        "owner": { "$ref": "#/$defs/nonEmptyString" },
+        "resolution_reference": { "$ref": "#/$defs/artifactReference" }
+      }
+    },
+    "closureDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "authority", "decided_at", "record_revision", "rationale"],
+      "properties": {
+        "state": { "enum": ["PROPOSED", "OPEN", "VERIFYING", "DIVERGENT", "CLOSED", "SUPERSEDED", "INDETERMINATE"] },
+        "authority": { "$ref": "#/$defs/nonEmptyString" },
+        "decided_at": { "type": "string", "format": "date-time" },
+        "record_revision": { "$ref": "#/$defs/nonEmptyString" },
+        "rationale": { "$ref": "#/$defs/nonEmptyString" },
+        "evidence_limitations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true
+        },
+        "superseding_closure_unit": { "$ref": "#/$defs/nonEmptyString" }
+      }
+    },
+    "closureUnit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "claim", "scope", "owner", "state", "representations", "transformations", "assumptions", "exclusions", "gaps", "provenance"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9][A-Z0-9._-]*$"
+        },
+        "claim": { "$ref": "#/$defs/nonEmptyString" },
+        "scope": { "$ref": "#/$defs/nonEmptyString" },
+        "owner": { "$ref": "#/$defs/nonEmptyString" },
+        "state": { "enum": ["PROPOSED", "OPEN", "VERIFYING", "DIVERGENT", "CLOSED", "SUPERSEDED", "INDETERMINATE"] },
+        "representations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/representation" },
+          "minItems": 1
+        },
+        "transformations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/transformation" }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true
+        },
+        "exclusions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/nonEmptyString" },
+          "uniqueItems": true
+        },
+        "gaps": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/gap" }
+        },
+        "provenance": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifactReference" },
+          "minItems": 1
+        },
+        "decision": { "$ref": "#/$defs/closureDecision" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "state": { "const": "CLOSED" } },
+            "required": ["state"]
+          },
+          "then": {
+            "required": ["decision"],
+            "properties": {
+              "decision": {
+                "properties": { "state": { "const": "CLOSED" } }
+              },
+              "gaps": {
+                "not": {
+                  "contains": {
+                    "properties": {
+                      "mandatory": { "const": true },
+                      "state": { "enum": ["open", "blocked"] }
+                    },
+                    "required": ["mandatory", "state"]
+                  }
+                }
+              },
+              "representations": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": { "const": "intent" },
+                        "disposition": { "const": "required" }
+                      },
+                      "required": ["class", "disposition"]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": { "const": "realization" },
+                        "disposition": { "const": "required" }
+                      },
+                      "required": ["class", "disposition"]
+                    }
+                  },
+                  {
+                    "contains": {
+                      "properties": {
+                        "class": { "const": "evidence" },
+                        "disposition": { "const": "required" },
+                        "result": { "const": "passed" },
+                        "achieved_level": { "$ref": "#/$defs/evidenceLevel" }
+                      },
+                      "required": ["class", "disposition", "result", "achieved_level", "artifacts"]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "state": { "const": "VERIFYING" } },
+            "required": ["state"]
+          },
+          "then": {
+            "properties": {
+              "transformations": { "minItems": 1 }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
