@@ -20,6 +20,7 @@ Catylist does not replace project-local authority. AES owns engineering standard
 ## Governance entry points
 
 - [CAT-001 — Catalyst System Architecture](docs/architecture/CAT-001-Catalyst-System-Architecture.md)
+- [CAT-002 — Engineering Representation, Closure, and Recovery](docs/architecture/CAT-002-Engineering-Representation-Closure-and-Recovery.md)
 - [Catalyst ecosystem architecture](docs/architecture/catalyst-ecosystem.md)
 - [Governance model](docs/architecture/governance-model.md)
 - [Repository taxonomy](docs/architecture/repository-taxonomy.md)
