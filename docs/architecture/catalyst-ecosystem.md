@@ -22,6 +22,7 @@ Catalyst separates program governance, engineering standards, project management
 | `evo` | Evolutionary optimization infrastructure |
 | `atarix` | Reference operating-system architecture and implementation |
 | `JAG` | Application-specific architecture and implementation |
+| `MayaUSD2017Bridge` | Maya 2017/OpenUSD compatibility product and RenderMan-preserving bridge |
 | `code-noodling` | Experimental and exploratory engineering work |
 
 ## Authority boundaries
@@ -34,6 +35,7 @@ Catylist defines how repositories relate; it does not absorb their local authori
 - EDT document-processing behavior is authoritative in `engineering-docs-toolkit`.
 - Project architecture and implementation are authoritative in the owning project repository.
 - Templates are authoritative only for new or deliberately synchronized scaffolding.
+- `MayaUSD2017Bridge` owns its wrapper, adapters, protocol, tests, and evidence; OpenUSD, MayaUSD, Maya, and RenderMan remain external dependencies governed by their respective upstream owners.
 - External references are not governed as Catalyst-owned repositories and must not be rewritten merely to satisfy Catalyst policy.
 
 ## Dependency direction
