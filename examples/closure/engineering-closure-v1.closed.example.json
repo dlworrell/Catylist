@@ -1,0 +1,171 @@
+{
+  "schema": "catalyst.engineering-closure.v1",
+  "closure_unit": {
+    "id": "CAT-CON-001-SCHEMA-001",
+    "claim": "The Catalyst engineering closure v1 schema expresses and validates the minimum common metadata required by CAT-CON-001.",
+    "scope": "CAT-CON-001 contract structure and its JSON Schema representation; downstream AEMS, P0, and project integration are excluded.",
+    "owner": "Catylist",
+    "state": "CLOSED",
+    "representations": [
+      {
+        "id": "intent.contract",
+        "class": "intent",
+        "title": "CAT-CON-001 engineering closure metadata contract",
+        "authority": "normative",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "docs/contracts/CAT-CON-001-Engineering-Closure-Metadata-Contract.md",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ]
+      },
+      {
+        "id": "realization.schema",
+        "class": "realization",
+        "title": "Engineering closure JSON Schema v1",
+        "authority": "delegated",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "schemas/catalyst/engineering-closure-v1.schema.json",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ]
+      },
+      {
+        "id": "evidence.closed-example",
+        "class": "evidence",
+        "title": "Closed-profile schema validation fixture",
+        "authority": "generated",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "examples/closure/engineering-closure-v1.closed.example.json",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ],
+        "supports": [
+          "intent.contract",
+          "realization.schema"
+        ],
+        "required_level": "E0",
+        "achieved_level": "E0",
+        "method": "Validate this fixture against engineering-closure-v1.schema.json using a JSON Schema Draft 2020-12 validator.",
+        "result": "passed",
+        "environment": {
+          "schema_dialect": "https://json-schema.org/draft/2020-12/schema"
+        },
+        "limitations": [
+          "This fixture demonstrates structural conformance only.",
+          "The closure decision applies to the schema record shape, not downstream operational adoption."
+        ]
+      }
+    ],
+    "transformations": [
+      {
+        "id": "transform.contract-to-schema",
+        "inputs": [
+          "intent.contract"
+        ],
+        "outputs": [
+          "realization.schema"
+        ],
+        "method": "Manual formalization of CAT-CON-001 requirements as JSON Schema Draft 2020-12 constraints.",
+        "tools": [
+          {
+            "name": "GitHub contents API"
+          }
+        ],
+        "configuration": {
+          "schema_version": "1"
+        },
+        "assumptions": [
+          "JSON is the canonical serialized representation.",
+          "YAML authoring is acceptable only when semantic round-trip is preserved."
+        ],
+        "output_authority": "delegated",
+        "determinism": "conditional",
+        "reversibility": "partially_reversible",
+        "information_loss": [
+          "Normative prose and rationale are not completely expressible as structural schema constraints."
+        ],
+        "provenance": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "docs/contracts/CAT-CON-001-Engineering-Closure-Metadata-Contract.md",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ],
+        "verification_status": "verified"
+      },
+      {
+        "id": "transform.schema-to-evidence",
+        "inputs": [
+          "realization.schema"
+        ],
+        "outputs": [
+          "evidence.closed-example"
+        ],
+        "method": "Draft 2020-12 structural validation.",
+        "tools": [
+          {
+            "name": "JSON Schema validator",
+            "version": "Draft 2020-12 compatible"
+          }
+        ],
+        "output_authority": "generated",
+        "determinism": "deterministic",
+        "reversibility": "irreversible",
+        "information_loss": [
+          "A passing validation result does not prove semantic completeness or ecosystem adoption."
+        ],
+        "provenance": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "schemas/catalyst/engineering-closure-v1.schema.json",
+            "revision": "cat-imp-001-closure-contracts"
+          }
+        ],
+        "verification_status": "verified"
+      }
+    ],
+    "assumptions": [
+      "The contract and schema are reviewed together.",
+      "The repository branch is replaced by an immutable commit identity before final closure is asserted."
+    ],
+    "exclusions": [
+      "AEMS implementation",
+      "P0 implementation",
+      "ATARIX project-profile extension",
+      "Production-baseline qualification"
+    ],
+    "gaps": [],
+    "provenance": [
+      {
+        "repository": "dlworrell/Catylist",
+        "location": "docs/architecture/CAT-002-Engineering-Representation-Closure-and-Recovery.md",
+        "revision": "449e896b8688e2a3cc136b5ff285bf414bc36ece"
+      },
+      {
+        "repository": "dlworrell/Catylist",
+        "location": "docs/reviews/CAT-REV-001-workstream-continuity.yaml",
+        "revision": "1126a7b8643588ef0c24ffb0f241acccb982a6f3"
+      }
+    ],
+    "decision": {
+      "state": "CLOSED",
+      "authority": "Catylist review",
+      "decided_at": "2026-07-19T22:00:00Z",
+      "record_revision": "cat-imp-001-closure-contracts",
+      "rationale": "The fixture records a bounded E0 closure claim for the contract-to-schema structural increment and explicitly excludes downstream implementation and operational qualification.",
+      "evidence_limitations": [
+        "The branch reference must be replaced with immutable commit provenance before merge qualification.",
+        "Independent validator execution is required by CI before this example may be relied upon."
+      ]
+    }
+  }
+}
