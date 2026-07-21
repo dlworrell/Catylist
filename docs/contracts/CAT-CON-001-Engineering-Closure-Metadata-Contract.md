@@ -273,6 +273,12 @@ A record in `CLOSED` shall additionally include:
 
 ## 13. Validation responsibilities
 
+The current allocation of structural checks, semantic validation, and review
+authority is recorded in
+[CAT-CON-001 — Enforcement Boundary](CAT-CON-001-Enforcement-Boundary.md).
+That profile may document enforcement without assigning new normative meaning
+to this contract or CAT-002.
+
 Catylist owns the common semantic contract and schema namespace.
 
 AES may define profile-specific obligations and minimum evidence requirements.

@@ -3,7 +3,7 @@
   "closure_unit": {
     "id": "CAT-CON-001-SCHEMA-001",
     "claim": "The Catalyst engineering closure v1 schema expresses and validates the minimum common metadata required by CAT-CON-001.",
-    "scope": "CAT-CON-001 contract structure and its JSON Schema representation; downstream AEMS, P0, and project integration are excluded.",
+    "scope": "CAT-CON-001 contract structure and its JSON Schema representation; semantic validation, downstream adoption, integration, and production readiness are excluded.",
     "owner": "Catylist",
     "state": "CLOSED",
     "representations": [
@@ -17,7 +17,7 @@
           {
             "repository": "dlworrell/Catylist",
             "location": "docs/contracts/CAT-CON-001-Engineering-Closure-Metadata-Contract.md",
-            "revision": "cat-imp-001-closure-contracts"
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
           }
         ]
       },
@@ -31,7 +31,7 @@
           {
             "repository": "dlworrell/Catylist",
             "location": "schemas/catalyst/engineering-closure-v1.schema.json",
-            "revision": "cat-imp-001-closure-contracts"
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
           }
         ]
       },
@@ -45,7 +45,7 @@
           {
             "repository": "dlworrell/Catylist",
             "location": "examples/closure/engineering-closure-v1.closed.example.json",
-            "revision": "cat-imp-001-closure-contracts"
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
           }
         ],
         "supports": [
@@ -54,14 +54,108 @@
         ],
         "required_level": "E0",
         "achieved_level": "E0",
-        "method": "Validate this fixture against engineering-closure-v1.schema.json using a JSON Schema Draft 2020-12 validator.",
+        "method": "Validate the reviewed fixture against engineering-closure-v1.schema.json using a JSON Schema Draft 2020-12 validator.",
         "result": "passed",
         "environment": {
-          "schema_dialect": "https://json-schema.org/draft/2020-12/schema"
+          "schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+          "subject_commit": "60225ab9b931bb51edcd8328b695db3b581ab93b"
         },
         "limitations": [
           "This fixture demonstrates structural conformance only.",
-          "The closure decision applies to the schema record shape, not downstream operational adoption."
+          "The closure decision applies to the schema record shape, not semantic sufficiency or downstream operational adoption."
+        ]
+      },
+      {
+        "id": "evidence.documentation-validation",
+        "class": "evidence",
+        "title": "Documentation validation workflow run",
+        "authority": "generated",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "https://github.com/dlworrell/Catylist/actions/runs/29704854180",
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+          }
+        ],
+        "supports": [
+          "intent.contract"
+        ],
+        "required_level": "E0",
+        "achieved_level": "E0",
+        "method": "Run the Catylist documentation validation workflow against the exact pull-request head.",
+        "result": "passed",
+        "environment": {
+          "provider": "GitHub Actions",
+          "run_id": 29704854180,
+          "conclusion": "success",
+          "subject_commit": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+        },
+        "limitations": [
+          "The workflow validates repository documentation structure and local links; it does not prove semantic completeness."
+        ]
+      },
+      {
+        "id": "evidence.aes-compliance",
+        "class": "evidence",
+        "title": "AES compliance workflow run",
+        "authority": "generated",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "https://github.com/dlworrell/Catylist/actions/runs/29704854179",
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+          }
+        ],
+        "supports": [
+          "intent.contract",
+          "realization.schema"
+        ],
+        "required_level": "E0",
+        "achieved_level": "E0",
+        "method": "Run the AES development and security compliance workflow against the exact pull-request head.",
+        "result": "passed",
+        "environment": {
+          "provider": "GitHub Actions",
+          "run_id": 29704854179,
+          "conclusion": "success",
+          "subject_commit": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+        },
+        "limitations": [
+          "Compliance scanning does not establish downstream adoption or production readiness."
+        ]
+      },
+      {
+        "id": "evidence.closure-schema-validation",
+        "class": "evidence",
+        "title": "Closure schema validation workflow run",
+        "authority": "generated",
+        "disposition": "required",
+        "artifacts": [
+          {
+            "repository": "dlworrell/Catylist",
+            "location": "https://github.com/dlworrell/Catylist/actions/runs/29704854193",
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+          }
+        ],
+        "supports": [
+          "intent.contract",
+          "realization.schema",
+          "evidence.closed-example"
+        ],
+        "required_level": "E0",
+        "achieved_level": "E0",
+        "method": "Check the schema and require positive and negative fixtures to behave as declared against the exact pull-request head.",
+        "result": "passed",
+        "environment": {
+          "provider": "GitHub Actions",
+          "run_id": 29704854193,
+          "conclusion": "success",
+          "subject_commit": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+        },
+        "limitations": [
+          "JSON Schema validation is structural and does not replace semantic validation or review authority."
         ]
       }
     ],
@@ -91,13 +185,13 @@
         "determinism": "conditional",
         "reversibility": "partially_reversible",
         "information_loss": [
-          "Normative prose and rationale are not completely expressible as structural schema constraints."
+          "Normative prose, authority, evidence sufficiency, and rationale are not completely expressible as structural schema constraints."
         ],
         "provenance": [
           {
             "repository": "dlworrell/Catylist",
             "location": "docs/contracts/CAT-CON-001-Engineering-Closure-Metadata-Contract.md",
-            "revision": "cat-imp-001-closure-contracts"
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
           }
         ],
         "verification_status": "verified"
@@ -105,29 +199,54 @@
       {
         "id": "transform.schema-to-evidence",
         "inputs": [
+          "intent.contract",
           "realization.schema"
         ],
         "outputs": [
-          "evidence.closed-example"
+          "evidence.closed-example",
+          "evidence.documentation-validation",
+          "evidence.aes-compliance",
+          "evidence.closure-schema-validation"
         ],
-        "method": "Draft 2020-12 structural validation.",
+        "method": "Run independent pull-request workflows against the reviewed commit and retain their run identities and conclusions.",
         "tools": [
           {
-            "name": "JSON Schema validator",
-            "version": "Draft 2020-12 compatible"
+            "name": "GitHub Actions"
+          },
+          {
+            "name": "jsonschema",
+            "version": "4.23.0"
           }
         ],
+        "configuration": {
+          "subject_commit": "60225ab9b931bb51edcd8328b695db3b581ab93b",
+          "workflow_run_ids": [
+            29704854180,
+            29704854179,
+            29704854193
+          ]
+        },
         "output_authority": "generated",
-        "determinism": "deterministic",
+        "determinism": "conditional",
         "reversibility": "irreversible",
         "information_loss": [
-          "A passing validation result does not prove semantic completeness or ecosystem adoption."
+          "Passing workflows do not prove semantic completeness, downstream adoption, integration behavior, or production readiness."
         ],
         "provenance": [
           {
             "repository": "dlworrell/Catylist",
-            "location": "schemas/catalyst/engineering-closure-v1.schema.json",
-            "revision": "cat-imp-001-closure-contracts"
+            "location": ".github/workflows/documentation.yml",
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+          },
+          {
+            "repository": "dlworrell/Catylist",
+            "location": ".github/workflows/aes-compliance.yml",
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
+          },
+          {
+            "repository": "dlworrell/Catylist",
+            "location": ".github/workflows/closure-schema-validation.yml",
+            "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
           }
         ],
         "verification_status": "verified"
@@ -135,12 +254,14 @@
     ],
     "assumptions": [
       "The contract and schema are reviewed together.",
-      "The repository branch is replaced by an immutable commit identity before final closure is asserted."
+      "GitHub's retained workflow metadata associates each recorded run with the exact reviewed commit."
     ],
     "exclusions": [
+      "Semantic AEMS validation",
       "AEMS implementation",
       "P0 implementation",
-      "ATARIX project-profile extension",
+      "ATARIX project-profile integration",
+      "Cross-repository compatibility and migration testing",
       "Production-baseline qualification"
     ],
     "gaps": [],
@@ -154,17 +275,22 @@
         "repository": "dlworrell/Catylist",
         "location": "docs/reviews/CAT-REV-001-workstream-continuity.yaml",
         "revision": "1126a7b8643588ef0c24ffb0f241acccb982a6f3"
+      },
+      {
+        "repository": "dlworrell/Catylist",
+        "location": "https://github.com/dlworrell/Catylist/pull/4",
+        "revision": "16a76bcbadd3a9808c6b803116f614d923bf4735"
       }
     ],
     "decision": {
       "state": "CLOSED",
-      "authority": "Catylist review",
-      "decided_at": "2026-07-19T22:00:00Z",
-      "record_revision": "cat-imp-001-closure-contracts",
-      "rationale": "The fixture records a bounded E0 closure claim for the contract-to-schema structural increment and explicitly excludes downstream implementation and operational qualification.",
+      "authority": "Catylist repository owner review",
+      "decided_at": "2026-07-21T00:44:54Z",
+      "record_revision": "60225ab9b931bb51edcd8328b695db3b581ab93b",
+      "rationale": "The exact PR #4 head passed all declared E0 workflows and was integrated by an immutable merge commit. Closure is limited to the common contract-to-schema structural claim and explicitly excludes semantic sufficiency, downstream implementation, integration, migration, and production readiness.",
       "evidence_limitations": [
-        "The branch reference must be replaced with immutable commit provenance before merge qualification.",
-        "Independent validator execution is required by CI before this example may be relied upon."
+        "The retained evidence establishes structural conformance only.",
+        "Semantic validation, downstream adoption, ATARIX integration, cross-repository migration, and production readiness remain intentionally open."
       ]
     }
   }

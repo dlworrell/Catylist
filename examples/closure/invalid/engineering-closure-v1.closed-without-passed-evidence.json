@@ -1,8 +1,8 @@
 {
   "schema": "catalyst.engineering-closure.v1",
   "closure_unit": {
-    "id": "INVALID-CLOSED-OPEN-GAP",
-    "claim": "This intentionally invalid fixture attempts to close a claim while a mandatory gap remains open.",
+    "id": "INVALID-CLOSED-WITHOUT-PASSED-EVIDENCE",
+    "claim": "A CLOSED record without passed required Evidence must be rejected.",
     "scope": "Negative schema-validation fixture.",
     "owner": "Catylist",
     "state": "CLOSED",
@@ -10,12 +10,12 @@
       {
         "id": "intent.invalid",
         "class": "intent",
-        "title": "Invalid fixture intent",
+        "title": "Negative fixture intent",
         "authority": "normative",
         "disposition": "required",
         "artifacts": [
           {
-            "location": "examples/closure/invalid/engineering-closure-v1.closed-with-open-gap.json",
+            "location": "docs/contracts/CAT-CON-001-Engineering-Closure-Metadata-Contract.md",
             "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
           }
         ]
@@ -23,7 +23,7 @@
       {
         "id": "realization.invalid",
         "class": "realization",
-        "title": "Invalid fixture realization",
+        "title": "Negative fixture realization",
         "authority": "delegated",
         "disposition": "required",
         "artifacts": [
@@ -36,33 +36,29 @@
       {
         "id": "evidence.invalid",
         "class": "evidence",
-        "title": "Invalid fixture evidence",
+        "title": "Negative fixture failed evidence",
         "authority": "generated",
         "disposition": "required",
         "artifacts": [
           {
-            "location": "examples/closure/invalid/engineering-closure-v1.closed-with-open-gap.json",
+            "location": "examples/closure/invalid/engineering-closure-v1.closed-without-passed-evidence.json",
             "revision": "60225ab9b931bb51edcd8328b695db3b581ab93b"
           }
         ],
-        "supports": ["intent.invalid", "realization.invalid"],
+        "supports": [
+          "intent.invalid",
+          "realization.invalid"
+        ],
         "required_level": "E0",
         "achieved_level": "E0",
         "method": "Intentional negative fixture.",
-        "result": "passed"
+        "result": "failed"
       }
     ],
     "transformations": [],
     "assumptions": [],
     "exclusions": [],
-    "gaps": [
-      {
-        "id": "gap.mandatory",
-        "description": "A mandatory open gap must prevent CLOSED state.",
-        "mandatory": true,
-        "state": "open"
-      }
-    ],
+    "gaps": [],
     "provenance": [
       {
         "location": "schemas/catalyst/engineering-closure-v1.schema.json",
@@ -72,9 +68,9 @@
     "decision": {
       "state": "CLOSED",
       "authority": "Invalid fixture",
-      "decided_at": "2026-07-19T22:00:00Z",
+      "decided_at": "2026-07-21T00:44:54Z",
       "record_revision": "60225ab9b931bb51edcd8328b695db3b581ab93b",
-      "rationale": "This decision is intentionally unsupported and must be rejected."
+      "rationale": "This decision lacks passed required Evidence and must be rejected."
     }
   }
 }
