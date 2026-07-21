@@ -11,7 +11,8 @@ import json
 import sys
 from pathlib import Path
 
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
+from jsonschema.exceptions import FormatError
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,7 +41,17 @@ def format_errors(validator: Draft202012Validator, instance: object) -> list[str
 def main() -> int:
     schema = load_json(SCHEMA_PATH)
     Draft202012Validator.check_schema(schema)
-    validator = Draft202012Validator(schema)
+    format_checker = FormatChecker()
+    try:
+        format_checker.check("not-a-date-time", "date-time")
+    except FormatError:
+        pass
+    else:
+        raise RuntimeError(
+            "date-time format validation is unavailable; install "
+            "rfc3339-validator==0.1.4"
+        )
+    validator = Draft202012Validator(schema, format_checker=format_checker)
 
     failures: list[str] = []
 
