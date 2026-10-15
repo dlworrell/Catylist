@@ -1,0 +1,183 @@
+{
+  "schema": "catylist.repository-inventory.v1",
+  "updated": "2026-10-15",
+  "authority": "docs/adr/ADR-0006-default-branch-protection-and-signed-commits.md",
+  "description": "Machine-readable Catalyst repository inventory. Records each repository's ownership and Catylist class with the evidence for it. default_branch_policy is derived from ownership by ADR-0006 and checked by scripts/validate_repository.py.",
+  "repositories": [
+    {
+      "full_name": "dlworrell/Catylist",
+      "ownership": "project-owned",
+      "class": "authority",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/AES",
+      "ownership": "project-owned",
+      "class": "authority",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/AEMS",
+      "ownership": "project-owned",
+      "class": "control-plane",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/P0",
+      "ownership": "project-owned",
+      "class": "control-plane",
+      "classification_source": "docs/architecture/catalyst-ecosystem.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/repo_templates",
+      "ownership": "project-owned",
+      "class": "control-plane",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/engineering-docs-toolkit",
+      "ownership": "project-owned",
+      "class": "shared-service",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/EWT",
+      "ownership": "project-owned",
+      "class": "shared-service",
+      "classification_source": "docs/reviews/CAT-REV-001-Repository-Inventory-and-Identity-Census.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/evo",
+      "ownership": "project-owned",
+      "class": "governed-product",
+      "classification_source": "docs/reviews/CAT-DISP-001-EVO-repository-classification.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/atarix",
+      "ownership": "project-owned",
+      "class": "governed-product",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/herkules-1934-english",
+      "ownership": "project-owned",
+      "class": "governed-product",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/JAG",
+      "ownership": "project-owned",
+      "class": "governed-product",
+      "classification_source": "docs/architecture/catalyst-ecosystem.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/MayaUSD2017Bridge",
+      "ownership": "project-owned",
+      "class": "governed-product",
+      "classification_source": "docs/architecture/catalyst-ecosystem.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/code-noodling",
+      "ownership": "project-owned",
+      "class": "experimental",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/Just-a-Geek-LLC",
+      "ownership": "organizational",
+      "class": "organizational",
+      "classification_source": "docs/adr/ADR-003-authority-chain.md",
+      "default_branch_policy": "protected"
+    },
+    {
+      "full_name": "dlworrell/65x02",
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "excluded"
+    },
+    {
+      "full_name": "dlworrell/CLK",
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "excluded"
+    },
+    {
+      "full_name": "dlworrell/ulx3s",
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "excluded"
+    },
+    {
+      "full_name": "dlworrell/cglm",
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "excluded"
+    },
+    {
+      "full_name": "dlworrell/Vega816",
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "excluded"
+    },
+    {
+      "full_name": "dlworrell/BB816-MATX-PCIE",
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/adr/ADR-0001-catalyst-repository-tree.md",
+      "default_branch_policy": "excluded"
+    },
+    {
+      "full_name": "dlworrell/openCUDA",
+      "ownership": "unclassified",
+      "class": "unclassified",
+      "classification_source": null,
+      "default_branch_policy": "pending-classification"
+    },
+    {
+      "full_name": "dlworrell/Rocket_demo",
+      "ownership": "unclassified",
+      "class": "unclassified",
+      "classification_source": null,
+      "default_branch_policy": "pending-classification"
+    },
+    {
+      "full_name": "dlworrell/audiblebooks",
+      "ownership": "unclassified",
+      "class": "unclassified",
+      "classification_source": null,
+      "default_branch_policy": "pending-classification"
+    },
+    {
+      "full_name": "dlworrell/rea",
+      "ownership": "unclassified",
+      "class": "unclassified",
+      "classification_source": null,
+      "default_branch_policy": "pending-classification"
+    },
+    {
+      "full_name": "dlworrell/pythonista-tools-installer",
+      "ownership": "unclassified",
+      "class": "unclassified",
+      "classification_source": null,
+      "default_branch_policy": "pending-classification"
+    }
+  ]
+}
