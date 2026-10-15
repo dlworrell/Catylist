@@ -55,6 +55,8 @@ repositories is not yet complete.
 - [Decision process](docs/architecture/decision-process.md)
 - [ADR-0004 — Governed Project Scopes Within a Repository](docs/adr/ADR-0004-governed-project-scopes.md)
 - [ADR-0005 — Agent Instruction Files](docs/adr/ADR-0005-agent-instruction-files.md)
+- [ADR-0006 — Default-Branch Protection and Signed Commits](docs/adr/ADR-0006-default-branch-protection-and-signed-commits.md) (proposed)
+- [Repository inventory](inventory/repositories.json) (machine-readable; proposed by ADR-0006)
 - [Architecture decision records](docs/adr/)
 - [Engineering profiles and reports](docs/engineering/)
 - [Architecture and production reviews](docs/reviews/)
