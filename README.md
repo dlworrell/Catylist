@@ -53,6 +53,8 @@ repositories is not yet complete.
 - [Repository taxonomy](docs/architecture/repository-taxonomy.md)
 - [Standards lifecycle](docs/architecture/standards-lifecycle.md)
 - [Decision process](docs/architecture/decision-process.md)
+- [ADR-0004 — Governed Project Scopes Within a Repository](docs/adr/ADR-0004-governed-project-scopes.md)
+- [ADR-0005 — Agent Instruction Files](docs/adr/ADR-0005-agent-instruction-files.md)
 - [Architecture decision records](docs/adr/)
 - [Engineering profiles and reports](docs/engineering/)
 - [Architecture and production reviews](docs/reviews/)

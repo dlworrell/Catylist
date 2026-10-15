@@ -23,7 +23,13 @@ Catalyst separates program governance, engineering standards, project management
 | `atarix` | Reference operating-system architecture and implementation |
 | `JAG` | Application-specific architecture and implementation |
 | `MayaUSD2017Bridge` | Maya 2017/OpenUSD compatibility product and RenderMan-preserving bridge |
-| `code-noodling` | Experimental and exploratory engineering work |
+| `code-noodling` | Experimental and exploratory engineering work; scoped repository under [ADR-0004](../adr/ADR-0004-governed-project-scopes.md); scopes not yet declared |
+
+`code-noodling` hosts several independent experimental projects. Under [ADR-0004](../adr/ADR-0004-governed-project-scopes.md), it is to
+declare them as governed project scopes. Each scope will own its automation
+and AES-SEC-001 evidence, while the repository keeps its single Experimental
+classification. Until its manifest declares scopes and each migration lands,
+`code-noodling` remains governed as a single repository-wide unit.
 
 ## Authority boundaries
 
