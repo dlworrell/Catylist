@@ -31,6 +31,10 @@ and AES-SEC-001 evidence, while the repository keeps its single Experimental
 classification. Until its manifest declares scopes and each migration lands,
 `code-noodling` remains governed as a single repository-wide unit.
 
+The machine-readable counterpart of this table, including external-reference and
+not-yet-classified repositories, is the [repository inventory](../../inventory/repositories.json),
+proposed by [ADR-0006](../adr/ADR-0006-default-branch-protection-and-signed-commits.md).
+
 ## Authority boundaries
 
 Catylist defines how repositories relate; it does not absorb their local authority.
