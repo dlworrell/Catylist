@@ -98,15 +98,24 @@ used for repositories. When the canonical vocabularies proposed in
 
 ### 3. Self-contained scopes
 
-Each scope is self-contained. It contains at least:
+Each scope is self-contained. What it must contain depends on its lifecycle
+state:
 
-- `README.md`;
-- `docs/`;
-- `tests/`;
-- `ci/`, holding the scope's automation logic;
-- its own adoption evidence under `<scope>/docs/engineering/` for each standard
-  that applies to it. For AES-SEC-001 this means the secure-coding profile, the
-  waiver log, and the review-disposition ledger.
+| Content | `proposed` or `bootstrap` | `active` or later |
+|---|---|---|
+| `README.md` | REQUIRED | REQUIRED |
+| `ci/`, holding the scope's automation logic | REQUIRED | REQUIRED |
+| `docs/` | RECOMMENDED | REQUIRED |
+| `tests/` | RECOMMENDED | REQUIRED |
+| Adoption evidence under `<scope>/docs/engineering/` for each applicable standard | REQUIRED | REQUIRED |
+
+For AES-SEC-001, adoption evidence means the secure-coding profile, the waiver
+log, and the review-disposition ledger. Adoption evidence is required from the
+moment a standard applies, whatever the scope's lifecycle state.
+
+Scaling the other requirements to lifecycle keeps the overhead of starting an
+experimental scope low. That overhead is the reason separate repositories per
+project were rejected below.
 
 A scope must not depend on another scope unless the dependency is declared in
 the manifest. Declared dependencies must not be cyclic, and they go through the
@@ -127,10 +136,17 @@ A root workflow for a scope only selects triggers and path filters and then
 invokes logic that lives in `<scope>/ci/`. It may do that through scripts or
 through local composite actions. Build, test, and scan logic lives in the scope.
 
+A root caller workflow that invokes scope-local logic MUST NOT run on
+`pull_request_target`, or on any other trigger that has secrets or write tokens
+while handling untrusted pull-request code, unless it checks out and executes
+only the base-branch version of that logic. See "Security and trust-boundary
+impact" below.
+
 ### 5. Coverage
 
-Every governed file belongs to exactly one scope or to the repository-level
-remainder. No file may belong to two scopes, and none may be left out.
+Every governed file, as defined under [Terminology](#terminology), belongs to
+exactly one scope or to the repository-level remainder. No file may belong to
+two scopes, and none may be left out.
 
 - A scope-level scan covers exactly that scope's path.
 - A repository-level scan covers the remainder and excludes every declared
@@ -175,6 +191,15 @@ A not-applicable declaration is reviewable evidence. It must be revisited when
 the scope's languages or surfaces change.
 
 ## Terminology
+
+A **governed file** is any file within the purview of an applicable standard's
+scanner or inspection, after that scanner's documented default exclusions, such
+as version-control metadata, build outputs, and declared fixtures. Rule 5
+applies to governed files.
+
+Generated artifacts committed by automation, such as published reports, belong
+to the scope whose automation generates them, wherever that automation is
+triggered from.
 
 "Governed project scope", or "scope" where unambiguous, means a directory-level
 governance unit declared by this ADR. It is distinct from the `scope` field of a
@@ -255,8 +280,15 @@ status quo by default (rule 1).
   boundary. Workflow triggers, permissions, secrets, and runner selection are
   reviewed at repository level, and a scope cannot grant itself broader CI
   permissions.
-- Self-hosted or privileged runners must not be reachable from untrusted
-  triggers merely because a scope's logic is invoked.
+- A root caller workflow that invokes scope-local logic, whether `<scope>/ci/`
+  scripts or local composite actions, MUST NOT run on `pull_request_target`, or
+  on any other trigger that has secrets or write tokens while handling untrusted
+  pull-request code, unless it checks out and executes only the base-branch
+  version of that logic. A local action or script is resolved from the
+  checked-out tree, so checking out the pull-request head would run the PR
+  author's code with the workflow's elevated permissions and secrets.
+- Workflows that grant write permissions or target self-hosted runners must not
+  run scope logic from unreviewed forks.
 - A scope's waivers cannot weaken obligations outside that scope (rule 6).
 
 ### Recovery and migration impact
@@ -299,7 +331,10 @@ implemented, here:
   directory. Today election analysis spans `election_reporting/`,
   `election-data/`, `reports/`, and `tests/`, and dice simulation sits inside
   `prime-number-suite/`. Each migration also adds the scope's `ci/` and root
-  caller workflow, and splits and re-keys its AES-SEC-001 evidence.
+  caller workflow, and splits and re-keys its AES-SEC-001 evidence. Dice
+  simulation's optional prime-seed input, a primes JSON file, is a data
+  dependency on the prime-number-suite scope and must be declared in the
+  manifest under rule 3.
 
 ## Affected repositories
 
