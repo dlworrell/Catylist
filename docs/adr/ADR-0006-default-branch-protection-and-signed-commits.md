@@ -89,7 +89,10 @@ Tags matching `v*` cannot be deleted, moved, or force-updated once created.
 Required status checks are per repository and are not part of this baseline.
 A check name that does not match a real job blocks every merge. Each
 repository's checks are therefore proposed from its latest successful default
-branch run, and enabled separately once their names are confirmed.
+branch run, and enabled separately once their names are confirmed. The same applies to code scanning
+requirements: the sandbox test showed that requiring code scanning results in a
+repository where code scanning is not configured blocks every merge, including
+fully signed ones.
 
 ### 5. Automation and signing
 
@@ -130,13 +133,24 @@ obligations above.
 
 ## Authority and implementation
 
-| Concern | Owner |
-|---|---|
-| This decision, its scope, and the inventory | Catylist |
-| The engineering obligations (signed commits, no history rewriting, pull-request-only default branches) | AES, recorded in AES-DEV-001 check-in discipline |
-| Ruleset definitions and merge-setting documentation | `repo_templates` |
-| Applying rulesets and merge settings, and reporting drift | AEMS |
-| Each repository's required status checks | The owning repository |
+Work flows in the authority order of [ADR-003](ADR-003-authority-chain.md),
+followed by templating and remediation:
+
+```text
+Catylist -> AES -> AEMS -> repo_templates
+                     |
+                     +--> P0 remediates existing repositories and brings them
+                          under Catylist management
+```
+
+| Order | Concern | Owner |
+|---|---|---|
+| 1 | This decision, its scope, and the inventory | Catylist |
+| 2 | The engineering obligations (signed commits, no history rewriting, pull-request-only default branches) | AES, recorded in AES-DEV-001 check-in discipline |
+| 3 | Applying rulesets and merge settings, and reporting drift | AEMS |
+| 4 | Ruleset definitions, merge-setting documentation, and scaffolding for new repositories | `repo_templates` |
+| 5 | Remediating each existing repository (workflows that push to default branches, unsigned automation, manifests) so it can be brought under these rules | P0 |
+| — | Each repository's required status checks, and the implementation work that supports Catylist management | The owning repository |
 
 Rulesets are applied by AEMS automation using a credential scoped to repository
 administration. Neither Catylist nor AEMS gains authority over repository
@@ -202,9 +216,15 @@ Rollout follows the [standards lifecycle](../architecture/standards-lifecycle.md
 ratchet:
 
 1. Report current settings and drift without changing anything.
-2. Apply the rules to one repository (`code-noodling`) and confirm that an
-   agent-authored pull request still merges with a merge commit.
-3. Apply the rules to all in-scope repositories.
+2. Validate each ruleset version in the `ruleset-sandbox` repository first. A
+   2026-10-15 test there confirmed that the baseline blocks an unsigned commit,
+   squash and rebase merges, direct pushes, and force pushes, while a fully
+   signed agent pull request merges with a GitHub-signed merge commit.
+3. Apply the rules to one repository (`code-noodling`) once P0 remediation for
+   it is complete, and confirm that an agent-authored pull request still merges
+   with a merge commit.
+4. Apply the rules to the remaining in-scope repositories, each after its P0
+   remediation.
 
 If signing cannot be met in a repository, every rule except signed commits may
 be applied first. The exception is recorded as a waiver in that repository with
@@ -215,31 +235,35 @@ Doing so is recorded under the emergency path and reversed afterwards.
 
 ## Follow-up work in owning repositories
 
-- **AES**: record the obligations in AES-DEV-001 check-in discipline: signed
-  commits on default branches, no history rewriting, pull-request-only changes,
-  and merge-commit-only integration.
-- **repo_templates**: add `rulesets/protect-default-branch.json` and
-  `rulesets/protect-release-tags.json`, document the matching merge settings,
-  and propose required status checks per repository. Change the P0
-  project-zero remediation workflow so that it produces signed commits.
-- **AEMS**:
-  - a manually dispatched workflow that reads this inventory at a pinned
-    revision and applies the rulesets and merge settings, with a dry-run drift
-    report;
-  - later, a scheduled read-only drift audit.
-- **code-noodling**: change the Election Result Reports workflow to open a pull
-  request, or to create verified commits through the GitHub API, instead of
-  pushing to `main`.
-- **Maintainer**: enable commit signing in every Git client used to commit,
-  including mobile, and register the signing key on GitHub as a signing key.
-- **Catylist**: classify the repositories marked `unclassified` in the
-  inventory, so they enter or leave scope deliberately.
+Listed in the order above. Each item is tracked in the Catylist issue tracker.
+
+1. **Catylist**: classify the repositories marked `unclassified` in the
+   inventory, so they enter or leave scope deliberately.
+2. **AES**: record the obligations in AES-DEV-001 check-in discipline: signed
+   commits on default branches, no history rewriting, pull-request-only
+   changes, and merge-commit-only integration.
+3. **AEMS**:
+   - a manually dispatched workflow that reads this inventory at a pinned
+     revision and applies the rulesets and merge settings, with a dry-run
+     drift report;
+   - later, a scheduled read-only drift audit.
+4. **repo_templates**: add `rulesets/protect-default-branch.json` and
+   `rulesets/protect-release-tags.json`, document the matching merge settings,
+   and propose required status checks per repository.
+5. **P0**: remediate existing repositories before each one is protected:
+   - change the project-zero remediation workflow so that it produces signed
+     commits;
+   - move workflows that push to default branches onto pull requests or
+     API-created verified commits. The `code-noodling` Election Result
+     Reports workflow is the first known case.
+6. **Maintainer**: enable commit signing in every Git client used to commit,
+   including mobile, and register the signing key on GitHub as a signing key.
 
 ## Affected repositories
 
 Every repository in the inventory with `default_branch_policy: protected`, plus
-`dlworrell/AES`, `dlworrell/AEMS`, and `dlworrell/repo_templates` for the
-follow-up work.
+`dlworrell/AES`, `dlworrell/AEMS`, `dlworrell/repo_templates`, and
+`dlworrell/P0` for the follow-up work.
 
 ## Related documents
 
