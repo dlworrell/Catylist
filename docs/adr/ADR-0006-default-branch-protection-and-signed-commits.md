@@ -235,29 +235,32 @@ Doing so is recorded under the emergency path and reversed afterwards.
 
 ## Follow-up work in owning repositories
 
-Listed in the order above. Each item is tracked in the Catylist issue tracker.
+Listed in the order above. Each item is tracked in the Catylist issue tracker
+under [#14](https://github.com/dlworrell/Catylist/issues/14).
 
 1. **Catylist**: classify the repositories marked `unclassified` in the
-   inventory, so they enter or leave scope deliberately.
+   inventory, so they enter or leave scope deliberately ([#16](https://github.com/dlworrell/Catylist/issues/16)).
 2. **AES**: record the obligations in AES-DEV-001 check-in discipline: signed
    commits on default branches, no history rewriting, pull-request-only
-   changes, and merge-commit-only integration.
+   changes, and merge-commit-only integration ([#20](https://github.com/dlworrell/Catylist/issues/20)).
 3. **AEMS**:
    - a manually dispatched workflow that reads this inventory at a pinned
      revision and applies the rulesets and merge settings, with a dry-run
-     drift report;
-   - later, a scheduled read-only drift audit.
+     drift report ([#22](https://github.com/dlworrell/Catylist/issues/22));
+   - later, a scheduled read-only drift audit ([#23](https://github.com/dlworrell/Catylist/issues/23)).
 4. **repo_templates**: add `rulesets/protect-default-branch.json` and
    `rulesets/protect-release-tags.json`, document the matching merge settings,
-   and propose required status checks per repository.
-5. **P0**: remediate existing repositories before each one is protected:
+   and propose required status checks per repository ([#25](https://github.com/dlworrell/Catylist/issues/25)).
+5. **P0**: remediate existing repositories before each one is protected
+   ([#27](https://github.com/dlworrell/Catylist/issues/27)):
    - change the project-zero remediation workflow so that it produces signed
      commits;
    - move workflows that push to default branches onto pull requests or
      API-created verified commits. The `code-noodling` Election Result
      Reports workflow is the first known case.
 6. **Maintainer**: enable commit signing in every Git client used to commit,
-   including mobile, and register the signing key on GitHub as a signing key.
+   including mobile, and register the signing key on GitHub as a signing key
+   ([#29](https://github.com/dlworrell/Catylist/issues/29)).
 
 ## Affected repositories
 
