@@ -57,8 +57,8 @@ Each ADR should record:
 | [ADR-001](ADR-001-repository-taxonomy.md) | Adopt an Explicit Catalyst Repository Taxonomy | Accepted | 2026-07-12 |
 | [ADR-002](ADR-002-standards-hierarchy.md) | Separate Governance, Standards, and Enforcement Authority | Accepted | 2026-07-12 |
 | [ADR-003](ADR-003-authority-chain.md) | Catalyst Authority Chain | Accepted | 2026-07-12 |
-| [ADR-0004](ADR-0004-governed-project-scopes.md) | Governed Project Scopes Within a Repository | Proposed | 2026-10-15 |
-| [ADR-0005](ADR-0005-agent-instruction-files.md) | Agent Instruction Files | Proposed | 2026-10-15 |
+| [ADR-0004](ADR-0004-governed-project-scopes.md) | Governed Project Scopes Within a Repository | Accepted | 2026-10-15 |
+| [ADR-0005](ADR-0005-agent-instruction-files.md) | Agent Instruction Files | Accepted | 2026-10-15 |
 
 This index previously stated that no Catylist ADRs had been adopted, even
 though the ADRs listed above had already been accepted. The table above

@@ -1,6 +1,6 @@
 # ADR-0005: Agent Instruction Files
 
-Status: Proposed
+Status: Accepted
 Owner: Catylist
 Date: 2026-10-15
 

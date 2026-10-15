@@ -69,7 +69,7 @@ A repository must not use a secondary capability to absorb authority belonging t
 
 ## Governed project scopes
 
-Status: Proposed, pending acceptance of [ADR-0004](../adr/ADR-0004-governed-project-scopes.md).
+Established by [ADR-0004](../adr/ADR-0004-governed-project-scopes.md) (Accepted).
 
 A repository may declare governed project scopes. A governed project scope is a
 top-level directory listed in the repository manifest that contains a

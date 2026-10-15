@@ -1,6 +1,6 @@
 # ADR-0004: Governed Project Scopes Within a Repository
 
-Status: Proposed
+Status: Accepted
 Owner: Catylist
 Date: 2026-10-15
 

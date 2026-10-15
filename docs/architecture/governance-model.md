@@ -27,7 +27,7 @@ A decision belongs in the narrowest repository that has complete authority over 
 
 ### Scope-level decision rights
 
-Status: Proposed, pending acceptance of [ADR-0004](../adr/ADR-0004-governed-project-scopes.md).
+Established by [ADR-0004](../adr/ADR-0004-governed-project-scopes.md) (Accepted).
 
 When a repository declares governed project scopes, the narrowest governed unit
 with complete authority is the scope.
@@ -81,8 +81,8 @@ Program-level trust boundaries include:
 - how external-reference repositories are separated from project-owned repositories;
 - how waivers are approved, reviewed, and expired;
 - how root workflows delegate to scope-local automation without letting a scope
-  grant itself broader CI permissions ([ADR-0004](../adr/ADR-0004-governed-project-scopes.md), proposed);
+  grant itself broader CI permissions ([ADR-0004](../adr/ADR-0004-governed-project-scopes.md));
 - how agent instruction files point to authoritative policy rather than
-  restating it ([ADR-0005](../adr/ADR-0005-agent-instruction-files.md), proposed).
+  restating it ([ADR-0005](../adr/ADR-0005-agent-instruction-files.md)).
 
 Automation may report and enforce declared policy, but it may not invent policy or silently redefine repository authority.
