@@ -80,6 +80,13 @@ On the default branch of every in-scope repository:
 Repository merge settings match rule 4: merge commits are allowed, and squash
 and rebase merging are disallowed.
 
+Head branches are deleted automatically when their pull request merges. Merged
+work stays addressable through the merge commit and the pull request, so the
+branch is no longer needed. Deleting it also makes GitHub retarget any pull
+request stacked on it to the base branch. Without that, a stacked pull request
+merges into the stale branch instead of the default branch, as Catylist #13 did
+on 2026-10-15.
+
 ### 3. Release tags
 
 Tags matching `v*` cannot be deleted, moved, or force-updated once created.
