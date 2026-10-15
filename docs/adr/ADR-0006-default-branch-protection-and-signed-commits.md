@@ -1,6 +1,6 @@
 # ADR-0006: Default-Branch Protection and Signed Commits
 
-Status: Proposed
+Status: Accepted
 Owner: Catylist
 Date: 2026-10-15
 

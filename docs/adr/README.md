@@ -59,7 +59,7 @@ Each ADR should record:
 | [ADR-003](ADR-003-authority-chain.md) | Catalyst Authority Chain | Accepted | 2026-07-12 |
 | [ADR-0004](ADR-0004-governed-project-scopes.md) | Governed Project Scopes Within a Repository | Accepted | 2026-10-15 |
 | [ADR-0005](ADR-0005-agent-instruction-files.md) | Agent Instruction Files | Accepted | 2026-10-15 |
-| [ADR-0006](ADR-0006-default-branch-protection-and-signed-commits.md) | Default-Branch Protection and Signed Commits | Proposed | 2026-10-15 |
+| [ADR-0006](ADR-0006-default-branch-protection-and-signed-commits.md) | Default-Branch Protection and Signed Commits | Accepted | 2026-10-15 |
 
 This index previously stated that no Catylist ADRs had been adopted, even
 though the ADRs listed above had already been accepted. The table above

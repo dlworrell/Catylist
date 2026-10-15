@@ -33,7 +33,7 @@ classification. Until its manifest declares scopes and each migration lands,
 
 The machine-readable counterpart of this table, including external-reference and
 not-yet-classified repositories, is the [repository inventory](../../inventory/repositories.json),
-proposed by [ADR-0006](../adr/ADR-0006-default-branch-protection-and-signed-commits.md).
+authoritative under [ADR-0006](../adr/ADR-0006-default-branch-protection-and-signed-commits.md).
 
 ## Authority boundaries
 
