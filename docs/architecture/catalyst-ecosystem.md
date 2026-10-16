@@ -53,7 +53,7 @@ Catylist defines how repositories relate; it does not absorb their local authori
 
 ## Dependency direction
 
-The intended authority and work flow is:
+The authority and work flow follows [ADR-003](../adr/ADR-003-authority-chain.md):
 
 ```text
 Catylist governance
@@ -62,17 +62,34 @@ Catylist governance
 AES standards and obligations
         |
         v
-P0 inspection and verification
+AEMS project management, assessment, and enforcement
         |
-        +----> AEMS-managed work
+        +----> repo_templates scaffolding for new repositories
         |
-        +----> EDT-rendered reports
+        +----> P0 remediation of existing repositories, bringing them
+        |      under Catylist management
         |
         v
 project implementation and evidence
+        |
+        +----> EDT-rendered reports
 ```
 
-`repo_templates` supplies initial and selected target structures to P0. Shared libraries such as EVO may be consumed by project repositories, but they must not redefine program governance or engineering standards.
+Each layer consumes the authority of the layers above it and must not redefine
+it. `repo_templates` turns that authority into scaffolding for new
+repositories. P0 inspects, remediates, verifies, and assesses the readiness of
+existing repositories against the same authority, so that each one can be
+brought under Catylist management. Shared libraries such as EVO may be consumed
+by project repositories, but they must not redefine program governance or
+engineering standards.
+
+[CAT-001 — Catalyst Engineering Ecosystem](../governance/CAT-001-catalyst-engineering-ecosystem.md)
+records the same direction, with CAT-SCHEMA between AES and AEMS.
+
+An earlier version of this section placed P0 between AES and AEMS, with
+`repo_templates` supplying structures to P0. It contradicted ADR-003 and was
+corrected in `dlworrell/Catylist#17`. The earlier text remains in this file's
+history.
 
 ## Evidence model
 
