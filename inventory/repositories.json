@@ -1,6 +1,6 @@
 {
   "schema": "catylist.repository-inventory.v1",
-  "updated": "2026-10-15",
+  "updated": "2026-10-16",
   "authority": "docs/adr/ADR-0006-default-branch-protection-and-signed-commits.md",
   "description": "Machine-readable Catalyst repository inventory. Records each repository's ownership and Catylist class with the evidence for it. default_branch_policy is derived from ownership by ADR-0006 and checked by scripts/validate_repository.py.",
   "repositories": [
@@ -146,38 +146,38 @@
     },
     {
       "full_name": "dlworrell/openCUDA",
-      "ownership": "unclassified",
-      "class": "unclassified",
-      "classification_source": null,
-      "default_branch_policy": "pending-classification"
+      "ownership": "project-owned",
+      "class": "experimental",
+      "classification_source": "docs/reviews/CAT-DISP-002-unclassified-repository-classification.md",
+      "default_branch_policy": "protected"
     },
     {
       "full_name": "dlworrell/Rocket_demo",
-      "ownership": "unclassified",
-      "class": "unclassified",
-      "classification_source": null,
-      "default_branch_policy": "pending-classification"
+      "ownership": "project-owned",
+      "class": "experimental",
+      "classification_source": "docs/reviews/CAT-DISP-002-unclassified-repository-classification.md",
+      "default_branch_policy": "protected"
     },
     {
       "full_name": "dlworrell/audiblebooks",
-      "ownership": "unclassified",
-      "class": "unclassified",
-      "classification_source": null,
-      "default_branch_policy": "pending-classification"
+      "ownership": "project-owned",
+      "class": "experimental",
+      "classification_source": "docs/reviews/CAT-DISP-002-unclassified-repository-classification.md",
+      "default_branch_policy": "protected"
     },
     {
       "full_name": "dlworrell/rea",
-      "ownership": "unclassified",
-      "class": "unclassified",
-      "classification_source": null,
-      "default_branch_policy": "pending-classification"
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/reviews/CAT-DISP-002-unclassified-repository-classification.md",
+      "default_branch_policy": "excluded"
     },
     {
       "full_name": "dlworrell/pythonista-tools-installer",
-      "ownership": "unclassified",
-      "class": "unclassified",
-      "classification_source": null,
-      "default_branch_policy": "pending-classification"
+      "ownership": "external-reference",
+      "class": "external-reference",
+      "classification_source": "docs/reviews/CAT-DISP-002-unclassified-repository-classification.md",
+      "default_branch_policy": "excluded"
     }
   ]
 }

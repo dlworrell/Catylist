@@ -24,6 +24,9 @@ Catalyst separates program governance, engineering standards, project management
 | `JAG` | Application-specific architecture and implementation |
 | `MayaUSD2017Bridge` | Maya 2017/OpenUSD compatibility product and RenderMan-preserving bridge |
 | `code-noodling` | Experimental and exploratory engineering work; scoped repository under [ADR-0004](../adr/ADR-0004-governed-project-scopes.md); scopes not yet declared |
+| `openCUDA` | Experimental; classified by [CAT-DISP-002](../reviews/CAT-DISP-002-unclassified-repository-classification.md) |
+| `Rocket_demo` | Experimental; classified by [CAT-DISP-002](../reviews/CAT-DISP-002-unclassified-repository-classification.md) |
+| `audiblebooks` | Experimental (private); classified by [CAT-DISP-002](../reviews/CAT-DISP-002-unclassified-repository-classification.md) |
 
 `code-noodling` hosts several independent experimental projects. Under [ADR-0004](../adr/ADR-0004-governed-project-scopes.md), it is to
 declare them as governed project scopes. Each scope will own its automation
@@ -31,8 +34,8 @@ and AES-SEC-001 evidence, while the repository keeps its single Experimental
 classification. Until its manifest declares scopes and each migration lands,
 `code-noodling` remains governed as a single repository-wide unit.
 
-The machine-readable counterpart of this table, including external-reference and
-not-yet-classified repositories, is the [repository inventory](../../inventory/repositories.json),
+The machine-readable counterpart of this table, including external-reference
+repositories, is the [repository inventory](../../inventory/repositories.json),
 authoritative under [ADR-0006](../adr/ADR-0006-default-branch-protection-and-signed-commits.md).
 
 ## Authority boundaries
