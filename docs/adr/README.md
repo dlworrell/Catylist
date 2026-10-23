@@ -60,6 +60,7 @@ Each ADR should record:
 | [ADR-0004](ADR-0004-governed-project-scopes.md) | Governed Project Scopes Within a Repository | Accepted | 2026-10-15 |
 | [ADR-0005](ADR-0005-agent-instruction-files.md) | Agent Instruction Files | Accepted | 2026-10-15 |
 | [ADR-0006](ADR-0006-default-branch-protection-and-signed-commits.md) | Default-Branch Protection and Signed Commits | Accepted | 2026-10-15 |
+| [ADR-0007](ADR-0007-governed-check-in-and-shared-automation.md) | Governed Check-In and Shared Automation | Proposed | 2026-10-19 |
 
 This index previously stated that no Catylist ADRs had been adopted, even
 though the ADRs listed above had already been accepted. The table above
