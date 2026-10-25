@@ -1,8 +1,11 @@
 # ADR-0007: Governed Check-In and Shared Automation
 
-Status: Proposed
+Status: Accepted
 Owner: Catylist
-Date: 2026-10-19
+Date: 2026-10-25
+Proposed: 2026-10-19
+Decision authority: Donovan Worrell
+Implementation qualification: Open; evidence is required per repository and scope
 
 Destination: `docs/adr/ADR-0007-governed-check-in-and-shared-automation.md`
 Applies to: Catylist, AES, AEMS, P0, `repo_templates`, EDT, and Catalyst-owned repositories and scopes
@@ -20,6 +23,20 @@ References as cited in the text below:
 Every repository and scope needs the same things: stable file identity, correct licensing, meaningful documentation, and evidence tied to exact revisions. Implementing these separately per repository, editor, agent, or workflow produces drift and inconsistent verdicts. Catylist already separates governance (Catylist), normative standards (AES), enforcement and evidence (AEMS), migration (P0), scaffolding (`repo_templates`), and publication (EDT). This ADR applies that chain to a single shared automation path.
 
 ## 2. Decision
+
+### 2.0 Program-wide applicability
+
+This decision applies to every repository whose ownership is `project-owned`
+or `organizational` in the authoritative
+[repository inventory](../../inventory/repositories.json), including all
+declared governed scopes and the repository-level remainder. The inventory at
+commit `703921c0d66bb46754804781274ac6075da0a656` contains 17 such
+repositories. That count records the adoption baseline; the current inventory
+determines scope. Newly classified governed repositories inherit this decision.
+
+External-reference repositories are excluded. Unclassified repositories enter
+scope only after Catylist records their classification. Repository-specific
+implementation, standards, and evidence remain with their owning authorities.
 
 ### 2.1 Develop freely; govern at check-in
 
@@ -95,6 +112,68 @@ A requirement may be piloted in **report-only** mode inside a scope whose lifecy
 - P0 runs the first pilot on `code-noodling/crypto_pipeline/` (P0-ADR-0002).
 - Public repositories get Sigstore-backed attestations; private repositories need the fallback in AEMS-ADR-001 §1.4 unless the plan supports attestations.
 
-## 5. Verification
+## 5. Adoption, verification, and migration
 
-Accepted when Slice 1 of `ROADMAP-v0.9.md` demonstrates, on `crypto_pipeline/`: identical findings from local and CI runs (RVW: same-rule behavior), a PR-supplied validator being ignored, and an attestation that verifies against the exact head commit and fails against any other.
+### 5.1 Acceptance record
+
+On 2026-10-25, Donovan Worrell directed: "Then we should formally adopt
+adr-0007 for all of Catylist repos." This records the maintainer's acceptance
+of the shared-automation architecture for the full scope in section 2.0,
+effective when this adoption change merges through the normal signed-commit
+pull-request route. Preparation of the record is AI-assisted; it does not
+assert independent review or grant an agent human approval authority.
+
+The original proposal made ADR acceptance conditional on Slice 1 pilot
+verification. This adoption amendment separates the maintainer's architecture
+decision from implementation qualification. The original pilot criteria below
+remain required evidence; they have not been waived or declared satisfied.
+
+Acceptance of this ADR does not adopt unpublished AES requirements, accept
+dependent ADRs in other repositories, or qualify an implementation for
+production. AES continues to decide normative obligations, and AEMS continues
+to implement and report them.
+
+### 5.2 Implementation qualification
+
+Slice 1 verification on `code-noodling/crypto_pipeline/` still requires:
+
+1. identical findings from local and CI runs (RVW: same-rule behavior);
+2. a PR-supplied validator being ignored in favor of the pinned evaluator; and
+3. an attestation that verifies against the exact head commit and fails
+   against any other commit.
+
+Retain source and evaluator revisions, the applicable AES revision, actual
+test outcomes, and all limitations with that evidence. Existing results remain
+bound to their recorded subjects. Missing, failed, or unrun checks remain open;
+adoption cannot convert them into passing evidence.
+
+The crypto pilot and the EVO archive work retain separate scope and acceptance
+records. Evidence from one does not close obligations owed by the other.
+The referenced roadmap and owning-repository ADRs must be reconciled and linked
+as they are published; absent documents remain explicit dependencies.
+
+### 5.3 Rollout and recovery
+
+Each governed repository records its applicable AES requirements, pinned AEMS
+version, scope coverage, implementation gaps, waivers, and verification
+evidence. Reuse existing tasks and evidence identities. Keep repository wiring
+thin and route changes through the authority chain in section 2.2.
+
+Report-only pilots continue under section 2.5. Blocking enforcement requires
+adopted AES obligations, a reviewed repository-specific transition, verified
+check names and behavior, and an explicit migration window where applicable.
+This governance adoption does not itself change repository settings, rulesets,
+required checks, secrets, runners, or workflow permissions.
+
+Implementation changes use signed pull requests and retain their prior state
+and recovery instructions. Any reversal of this governance decision requires
+an attributable superseding decision; history and existing evidence remain
+addressable.
+
+## 6. Decision history
+
+- 2026-10-19: shared-automation architecture proposed.
+- 2026-10-25: maintainer directed adoption across all governed Catylist
+  repositories. Applicability was tied to the authoritative inventory, and
+  architecture acceptance was separated from implementation qualification
+  while retaining the original pilot verification criteria.
