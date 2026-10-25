@@ -61,7 +61,7 @@ Each ADR should record:
 | [ADR-0005](ADR-0005-agent-instruction-files.md) | Agent Instruction Files | Accepted | 2026-10-15 |
 | [ADR-0006](ADR-0006-default-branch-protection-and-signed-commits.md) | Default-Branch Protection and Signed Commits | Accepted | 2026-10-15 |
 | [ADR-0007](ADR-0007-governed-check-in-and-shared-automation.md) | Governed Check-In and Shared Automation | Accepted | 2026-10-25 |
-| [ADR-0009](ADR-0009-codeql-assisted-security-review.md) | CodeQL-assisted Security Review and Evidence-Based Gate Promotion | Proposed | 2026-10-25 |
+| [ADR-0009](ADR-0009-codeql-assisted-security-review.md) | CodeQL-assisted Security Review and Evidence-Based Gate Promotion | Accepted | 2026-10-25 |
 
 ADR-0008 is historical proposal lineage superseded within ADR-0007; the distinct CodeQL proposal uses ADR-0009 without reusing that identity.
 
