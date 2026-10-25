@@ -2,7 +2,8 @@
 Draft lineage: DRAFT-CAT-CODEQL-REVIEW
 Date: 2026-10-25
 AI-assisted drafting: ChatGPT; no independent review asserted.
-Status: Proposed
+Status: Accepted
+Implementation qualification: Open; CQL-G01–10 evidence remains required
 Owner: Catylist
 Decision authority: Donovan Worrell
 Affected repositories: current and future project-owned/organizational inventory entries and governed scopes; external-reference repositories excluded.
@@ -13,7 +14,7 @@ Catylist needs a consistent security review processor for adopted AES-SEC-001/00
 
 The build used to create a CodeQL database can execute repository-controlled code. A pinned scanner alone therefore does not establish trustworthy extraction. Signed results also need verified producer identity, execution context and exact subject binding.
 
-## Proposed decision
+## Decision
 1. Adopt CodeQL, through the shared pinned AEMS evaluator, as a security-analysis input to code review. CodeQL does not approve a PR, certify a standard, prove cryptographic security or replace authorized review.
 2. AES alone defines normative obligations, exception authority and applicability. AEMS maintains query implementations, tests, mappings and evidence. Repository owners maintain extraction/build profiles and complementary evidence. Catylist approves governance and promotion policy; P0 coordinates migration; templates provide wiring.
 3. Start each applicable repository/language profile in report-only mode. Unsupported or unextracted surfaces are explicitly not assessed. A repository with no applicable supported-language surface records a reviewed applicability rationale rather than a synthetic successful scan.
@@ -39,7 +40,7 @@ Applicable complementary evidence includes warning/hardening builds, sanitizers,
 | Human review alone | Flexible interpretation | Inconsistent repeatability and avoidable review burden |
 | CodeQL as automatic reviewer/compliance verdict | Simple merge signal | Unsupported completeness and authority claims; rejected |
 | Independent scanners configured per repository | Local flexibility | Policy drift, duplicated engines and inconsistent evidence |
-| Shared AEMS CodeQL plus accountable review | Reuse, traceability and bounded automation | Extraction complexity, macOS availability, false-positive disposition and ongoing qualification; proposed |
+| Shared AEMS CodeQL plus accountable review | Reuse, traceability and bounded automation | Extraction complexity, macOS availability, false-positive disposition and ongoing qualification; selected |
 
 ## Measurable promotion criteria
 | ID | Required evidence |
@@ -55,12 +56,12 @@ Applicable complementary evidence includes warning/hardening builds, sanitizers,
 | CQL-G09 | Actual named check/producer is bound to the intended branch/scope and blocks an authorized controlled failing case; a corrected case succeeds |
 | CQL-G10 | Maintainer records transition authority, migration/rollback plan and retained evidence. Qualification is recorded separately per repository/profile |
 
-These are proposed acceptance criteria, not tests run by this document.
+These are required qualification criteria, not tests run by this document.
 
 ## Consequences, recovery and decisions needed
 The proposal supports consistent review while retaining coverage limits and clear ownership. Costs include extraction runners, version maintenance, evidence retention and reviewer time. Do not require local desktop setup: use approved hosted workflows where feasible, including macOS for Swift.
 
-Decisions needed: accept CodeQL's bounded review role; approve the promotion criteria; select the first repository/scope pilot and the authorized reviewing role. No assignee or deadline is implied.
+The bounded CodeQL review role and promotion criteria are accepted. Next implementation decisions are selection of the first repository/scope pilot and its authorized reviewing role. No assignee or deadline is implied.
 
 If a promoted profile fails operationally, report indeterminate. Correct through a reviewed pinned update or an explicitly authorized temporary return to report-only mode; retain evidence and existing signature/history protections. No automatic bypass or settings change is authorized by this draft.
 
@@ -74,5 +75,12 @@ Prepared with [Software Architect](https://www.dropbox.com/scl/fi/xb7j0gitfr1koj
 - [AEMS implementation and limits](https://github.com/dlworrell/AEMS/blob/dac93871987b3234743854cc39c8b3dc89009a4d/docs/engineering/AES-CodeQL.md).
 - [AES-SEC-001](https://github.com/dlworrell/AES/blob/2a29348533bbc29f9e645c45316bcce33d75ae0c/standards/AES-SEC-001-secure-c-cpp-coding-rules.md) and [AES-SEC-002](https://github.com/dlworrell/AES/blob/2a29348533bbc29f9e645c45316bcce33d75ae0c/standards/AES-SEC-002-cross-language-secret-storage-boundaries.md).
 
-Numbering: ADR-0008 is retained as historical proposal lineage superseded within ADR-0007; this distinct CodeQL proposal uses ADR-0009 to avoid reusing that identity. Publication as Proposed does not authorize implementation or accept this decision. Formal acceptance requires an explicit maintainer decision recorded in a reviewed change to this status and the index.
+Numbering: ADR-0008 is retained as historical proposal lineage superseded within ADR-0007; this distinct CodeQL proposal uses ADR-0009 to avoid reusing that identity. The initial publication was Proposed. The maintainer acceptance below changes this status and the index; implementation qualification and per-profile promotion remain separate.
 
+
+
+## Maintainer acceptance — 2026-10-25
+
+Donovan Worrell reported that he had approved and signed the review PRs and directed remediation of their merge blockers. This records his acceptance of the architectural direction and CQL-G01–10 qualification criteria reviewed in PR #39 at `87a6f3891103bfbb85b5c69b5389155d76d55b11`, republished with the identical complete tree as verified `3131a3846bab4b6d5dd794e3983a9d2d33135d5f` and merged at `b6550a65d5a8d2b4ac5aa2064c805f6da911a958`.
+
+Acceptance becomes effective when this signed status-record change merges. Preparation of this record is AI-assisted; it does not claim independent review or a human cryptographic signature by the agent. Implementation qualification remains open per repository and profile. This decision does not itself enable required checks, adopt absent AES requirements, grant credentials, enroll runners, clear experimental cryptography for secret use or accept the unfiled AEMS-ADR-002 base proposal. Profile promotion still requires the stated evidence and authorized scope-specific transition.
