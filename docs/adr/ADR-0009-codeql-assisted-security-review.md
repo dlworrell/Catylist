@@ -2,7 +2,8 @@
 Draft lineage: DRAFT-CAT-CODEQL-REVIEW
 Date: 2026-10-25
 AI-assisted drafting: ChatGPT; no independent review asserted.
-Status: Proposed
+Status: Accepted
+Implementation qualification: Open; CQL-G01–10 evidence remains required
 Owner: Catylist
 Decision authority: Donovan Worrell
 Affected repositories: current and future project-owned/organizational inventory entries and governed scopes; external-reference repositories excluded.
@@ -76,3 +77,10 @@ Prepared with [Software Architect](https://www.dropbox.com/scl/fi/xb7j0gitfr1koj
 
 Numbering: ADR-0008 is retained as historical proposal lineage superseded within ADR-0007; this distinct CodeQL proposal uses ADR-0009 to avoid reusing that identity. Publication as Proposed does not authorize implementation or accept this decision. Formal acceptance requires an explicit maintainer decision recorded in a reviewed change to this status and the index.
 
+
+
+## Maintainer acceptance — 2026-10-25
+
+Donovan Worrell reported that he had approved and signed the review PRs and directed remediation of their merge blockers. This records his acceptance of the architectural direction and CQL-G01–10 qualification criteria reviewed in PR #39 at `87a6f3891103bfbb85b5c69b5389155d76d55b11`, republished with the identical complete tree as verified `3131a3846bab4b6d5dd794e3983a9d2d33135d5f` and merged at `b6550a65d5a8d2b4ac5aa2064c805f6da911a958`.
+
+Acceptance becomes effective when this signed status-record change merges. Preparation of this record is AI-assisted; it does not claim independent review or a human cryptographic signature by the agent. Implementation qualification remains open per repository and profile. This decision does not itself enable required checks, adopt absent AES requirements, grant credentials, enroll runners, clear experimental cryptography for secret use or accept the unfiled AEMS-ADR-002 base proposal. Profile promotion still requires the stated evidence and authorized scope-specific transition.
