@@ -56,10 +56,17 @@ repositories is not yet complete.
 - [ADR-0004 — Governed Project Scopes Within a Repository](docs/adr/ADR-0004-governed-project-scopes.md)
 - [ADR-0005 — Agent Instruction Files](docs/adr/ADR-0005-agent-instruction-files.md)
 - [ADR-0006 — Default-Branch Protection and Signed Commits](docs/adr/ADR-0006-default-branch-protection-and-signed-commits.md)
+- [ADR-0007 — Governed Check-In and Shared Automation](docs/adr/ADR-0007-governed-check-in-and-shared-automation.md)
 - [Repository inventory](inventory/repositories.json) (machine-readable; authoritative under ADR-0006)
 - [Architecture decision records](docs/adr/)
 - [Engineering profiles and reports](docs/engineering/)
 - [Architecture and production reviews](docs/reviews/)
+
+ADR-0007 is accepted for every project-owned or organizational repository in
+the authoritative inventory, including governed scopes and the repository-level
+remainder. Implementation qualification and repository rollout retain their
+own evidence and migration requirements; the decision does not certify those
+steps complete.
 
 ## Current closure-contract implementation
 
