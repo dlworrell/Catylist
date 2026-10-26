@@ -29,6 +29,9 @@ REQUIRED = (
 LINK_PATTERN = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 
 INVENTORY_PATH = "inventory/repositories.json"
+TRUST_PATH = "inventory/trusted-contributors.json"
+TRUST_SCHEMA = "catylist.trusted-contributors.v1"
+AGENT_NAMES = {"claude", "chatgpt", "notion", "copilot"}
 INVENTORY_SCHEMA = "catylist.repository-inventory.v1"
 # ADR-0006 rule 1: default_branch_policy is derived from ownership.
 POLICY_BY_OWNERSHIP = {
@@ -152,12 +155,50 @@ def validate_inventory() -> list[str]:
     return errors
 
 
+def validate_trusted_contributors() -> list[str]:
+    """ADR-0011: the trusted-contributor list names verified people and agents."""
+    path = ROOT / TRUST_PATH
+    try:
+        document = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        return [f"{TRUST_PATH}: cannot read trusted contributors: {exc}"]
+    errors: list[str] = []
+    if document.get("schema") != TRUST_SCHEMA:
+        errors.append(f"{TRUST_PATH}: schema must be {TRUST_SCHEMA}")
+    authority = document.get("authority")
+    if not isinstance(authority, str) or not (ROOT / authority).is_file():
+        errors.append(f"{TRUST_PATH}: authority must name an existing file")
+    seen: set[str] = set()
+    for index, person in enumerate(document.get("people") or []):
+        login = person.get("login") if isinstance(person, dict) else None
+        if not isinstance(login, str) or not re.fullmatch(r"[A-Za-z0-9-]+", login):
+            errors.append(f"{TRUST_PATH}: people[{index}].login must be a GitHub login")
+            continue
+        if login.lower() in seen:
+            errors.append(f"{TRUST_PATH}: duplicate entry {login}")
+        seen.add(login.lower())
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(person.get("verified", ""))):
+            errors.append(f"{TRUST_PATH}: {login}: verified must be a date")
+    for index, agent in enumerate(document.get("agents") or []):
+        name = agent.get("name") if isinstance(agent, dict) else None
+        if name not in AGENT_NAMES:
+            errors.append(f"{TRUST_PATH}: agents[{index}].name must be one of {sorted(AGENT_NAMES)}")
+            continue
+        if name in seen:
+            errors.append(f"{TRUST_PATH}: duplicate entry {name}")
+        seen.add(name)
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(agent.get("verified", ""))):
+            errors.append(f"{TRUST_PATH}: {name}: verified must be a date")
+    return errors
+
+
 def main() -> int:
     errors = (
         validate_required_files()
         + validate_manifest()
         + validate_local_links()
         + validate_inventory()
+        + validate_trusted_contributors()
     )
     if errors:
         for error in errors:
