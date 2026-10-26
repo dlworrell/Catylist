@@ -108,9 +108,11 @@ model key stays only in AEMS. A repository joins the cycle through AEMS
 
 ### 8. Rollout
 
-1. `ruleset-sandbox` first: create `dev-daily` and `fitment` from `main`,
-   apply the ruleset, run a full cycle with a planted documentation gap and a
-   planted untested change, and release `v0.1.0`.
+1. Trial on **AEMS** and **atarix** first. They carry real source code and
+   tests, which the fitment reviewer needs to be judged fairly. Create
+   `dev-daily` and `fitment` from `main`, apply the ruleset, run full cycles on
+   their ongoing work, and release `v0.1.0` of each. In atarix the generated
+   reports that ring-0 publishes (ADR-0012) target `dev-daily`.
 2. Each governed repository then adopts it in its ADR-0000 adoption pull
    request. `fitment` and `fitment/source` become required checks on `main`
    only after the repository's first clean cycle (ADR-0006 §4).
