@@ -135,14 +135,14 @@ one.
 | Law | Enforced by |
 |---|---|
 | 0 | The repository inventory and the conformance check (ADR-0000 present and pinned to the current Code version) |
-| 1 | The conformance check: the ADR log exists, and every pull request names an ADR or gives a reason |
+| 1 | The conformance check: the ADR log exists, and every pull request names an ADR or gives a reason that the AI enforcer accepts |
 | 2 | The conformance check (citations and waiver expiry dates) and review |
 | 3 | Repository rulesets (ADR-0006) |
 | 4 | Rulesets, agent instruction files (ADR-0005), and the conformance check for changes to governance files |
 | 5 | Secret scanning, push protection and review |
 | 6 | Required status checks and review |
 | 7 | A pinned conformance workflow, updated only by reviewable pull requests |
-| 8 | Review, and reports to the maintainer |
+| 8 | The AEMS AI enforcer (organizational psychologist prompt), review, and reports to the maintainer |
 
 Laws 3 and 6 are enforced by the hosting platform. No instruction file can
 enforce anything on its own; it only tells contributors what the checks

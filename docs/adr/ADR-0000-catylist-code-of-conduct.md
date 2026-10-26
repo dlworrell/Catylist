@@ -90,18 +90,29 @@ Conformance with the Code is mandatory. A conformance check becomes a
 records the decision authority's explicit choice to require this check. It
 replaces, for this check only, ADR-0006's deferral of required status checks.
 
-The check reaches required status by the route
-[ADR-0007](ADR-0007-governed-check-in-and-shared-automation.md) already sets
-for any blocking rule:
+The Code is not a negotiation. **AEMS enforces it directly**, citing the
+Code's laws as ring 0 authority. It does not wait for an AES standard or a
+report-only phase. The enforcement has two parts with one verdict:
 
-1. **AES** adopts the normative rules for local ADR logs (location, template,
-   front matter, what needs an ADR, and the waiver format).
-2. **AEMS** implements the check. It cites the AES rule and this ADR for every
-   finding, and it fails closed on `violation` and `indeterminate`.
-3. The check runs in report-only mode on `ruleset-sandbox`, then on each
-   repository as it adopts ADR-0000.
-4. Once the check passes in a repository, the check is added to that
-   repository's ruleset as required.
+- **Deterministic checks** for everything a script can decide, such as
+  ADR-0000 being present and pinned, the `ADR:` line, waiver expiry dates and
+  commit signatures.
+- **An AI enforcer**, the AEMS prompt
+  `prompts/organizational-psychologist-code-enforcer.md`, for judgement: whether an
+  "n/a" is justified, whether claims are backed by evidence, prompt injection,
+  and conduct under Law 8. It reports as machine review, never as human
+  review (ADR-0007 §2.6), and never approves or merges.
+
+The check fails closed on `violation` and `indeterminate`. It is first run on
+`ruleset-sandbox` to prove the check itself works (Law 7), then becomes
+required in each repository's ruleset when that repository adopts ADR-0000.
+
+**ADR-0007 moves down.** ADR-0007 §2.5 lets only AES-adopted rules block
+merges, after a report-only pilot. That conflicts with this decision, so under
+section 3 it is superseded in part: it no longer applies to rules that
+enforce the Code. It still governs every other AEMS rule. AES may still write
+a detailed standard for local ADR logs; that standard refines the check but
+does not gate it.
 
 ### 5. Amendment
 
@@ -115,8 +126,8 @@ updates the "Code version" line of its ADR-0000.
 | Owner | Responsibility |
 |---|---|
 | Catylist | The Code, this ADR, and the inventory of governed repositories |
-| AES | The normative rules for local ADR logs, PR ADR references and waivers |
-| AEMS | The conformance check and its required-check rollout |
+| AES | Optionally, a detailed standard for local ADR logs, PR ADR references and waivers that refines (but does not gate) the check |
+| AEMS | The conformance check (deterministic checks plus the AI enforcer prompt), its sandbox trial and its required-check rollout |
 | `repo_templates` | The local ADR-0000 file, an ADR template, a `CODE_OF_CONDUCT.md` pointer, the pull request template's `ADR:` field, and agent instruction file pointers (ADR-0005) |
 | P0 | Adopting ADR-0000 in each existing repository, including any renumbering |
 | Each governed repository | Its ADR log, its ADR-0000, and its own decisions below ring 0 |
@@ -136,6 +147,9 @@ ADR-0005 requires.
   public record, and a rule with exemptions is easier to get around.
 - **Make conformance advisory.** Rejected by the decision authority: an
   advisory check does not bind anyone.
+- **Wait for an AES standard and a report-only pilot (ADR-0007 §2.5).**
+  Rejected by the decision authority: the Code is not a negotiation. The
+  sandbox trial remains, to prove the check works before it can block.
 - **Renumber Catylist's ADR-000 to make room.** Rejected: its content does not
   conflict with the Code, and renaming it would break the validator and
   existing citations. Precedence, not the file name, makes ADR-0000 ring 0.
@@ -149,6 +163,10 @@ ADR-0005 requires.
   a standing ADR for routine updates, and the check must recognise it.
 - Until the conformance check is required in a repository, Laws 1, 2 and 6 are
   upheld there by review only.
+- ADR-0007 §2.5 no longer applies to rules that enforce the Code.
+- An AI enforcer judges conduct. It can be wrong, so Law 8 findings need a
+  direct quotation, borderline cases are `indeterminate`, and the maintainer
+  decides them.
 - With one maintainer, review is self-review (ADR-0007 §2.6). The Code does
   not change that.
 - Law 8 cannot be checked by machine. It is upheld by review and by reports.
@@ -157,10 +175,12 @@ ADR-0005 requires.
 
 ## Follow-up work in owning repositories
 
-1. **AES:** a standard for local ADR logs, PR ADR references and waivers, from
-   which the conformance check's rules are cited.
-2. **AEMS:** the conformance check, its report-only trial on
+1. **AEMS:** the enforcer prompt and enforcement plan
+   ([dlworrell/AEMS#38](https://github.com/dlworrell/AEMS/pull/38)), then the
+   reusable `catylist-code-conformance` workflow, its trial on
    `ruleset-sandbox`, and the per-repository change that makes it required.
+2. **AES (optional):** a detailed standard for local ADR logs that refines the
+   check.
 3. **`repo_templates`:** the local ADR-0000, the ADR template,
    `CODE_OF_CONDUCT.md`, the pull request template's `ADR:` field, and agent
    instruction file pointers.
