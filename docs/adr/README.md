@@ -52,6 +52,7 @@ Each ADR should record:
 
 | ADR | Title | Status | Date |
 |---|---|---|---|
+| [ADR-0000](ADR-0000-catylist-code-of-conduct.md) | Catylist Code of Conduct (Ring 0) | Accepted | 2026-10-26 |
 | [ADR-000](ADR-000-governance-authority.md) | Establish Catylist as the Program-Governance Authority | Accepted | 2026-07-12 |
 | [ADR-0001](ADR-0001-catalyst-repository-tree.md) | Catalyst Repository Tree | Accepted | 2026-07-06 |
 | [ADR-001](ADR-001-repository-taxonomy.md) | Adopt an Explicit Catalyst Repository Taxonomy | Accepted | 2026-07-12 |
@@ -68,6 +69,14 @@ ADR-0008 is historical proposal lineage superseded within ADR-0007; the distinct
 This index previously stated that no Catylist ADRs had been adopted, even
 though the ADRs listed above had already been accepted. The table above
 replaces that stale statement.
+
+### ADR-0000 is ring 0
+
+`ADR-0000` is reserved in every governed repository for adopting the
+[Catylist Code of Conduct](../../CODE_OF_CONDUCT.md). It ranks above every
+other ADR, including the ones below, and is never renumbered or amended
+locally. `ADR-0000` and `ADR-000` are different records: `ADR-000` establishes
+Catylist as the governance authority and ranks below ADR-0000.
 
 ### Historical numbering
 
