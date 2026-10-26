@@ -1,0 +1,14 @@
+{
+  "schema": "catylist.trusted-contributors.v1",
+  "updated": "2026-10-26",
+  "authority": "docs/adr/ADR-0011-agent-attribution-and-trusted-contributors.md",
+  "description": "Contributors whose trust the maintainer has verified (Code, Law 4; ADR-0010 section 3). Trust never exempts anyone from required checks; it decides only how an inconclusive conversation result is handled. An agent's post is trusted only when the agent and the prompting user are both listed and the post comes from that user's account (ADR-0011).",
+  "people": [
+    {"login": "dlworrell", "name": "Donovan Worrell", "role": "maintainer", "verified": "2026-10-26"}
+  ],
+  "agents": [
+    {"name": "claude", "display_name": "Claude", "github_login": "claude", "verified": "2026-10-26"},
+    {"name": "chatgpt", "display_name": "ChatGPT", "github_login": null, "verified": "2026-10-26"},
+    {"name": "notion", "display_name": "Notion", "github_login": null, "verified": "2026-10-26"}
+  ]
+}
