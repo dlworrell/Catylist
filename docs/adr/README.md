@@ -64,6 +64,7 @@ Each ADR should record:
 | [ADR-0007](ADR-0007-governed-check-in-and-shared-automation.md) | Governed Check-In and Shared Automation | Accepted | 2026-10-25 |
 | [ADR-0009](ADR-0009-codeql-assisted-security-review.md) | CodeQL-assisted Security Review and Evidence-Based Gate Promotion | Accepted | 2026-10-25 |
 | [ADR-0010](ADR-0010-ring-0-input-gate-and-trust.md) | Ring 0 Input Gate and Trust (Code 1.1.0) | Accepted | 2026-10-26 |
+| [ADR-0012](ADR-0012-ring-0-opens-verified-automation-pull-requests.md) | Ring 0 Opens Verified Automation Pull Requests | Accepted | 2026-10-26 |
 
 ADR-0008 is historical proposal lineage superseded within ADR-0007; the distinct CodeQL proposal uses ADR-0009 without reusing that identity.
 
