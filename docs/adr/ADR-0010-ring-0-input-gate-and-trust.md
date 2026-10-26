@@ -87,6 +87,10 @@ until the maintainer records them in Catylist's **trusted-contributor list**.
   visible and goes to the maintainer.
 - A `violation` is hidden for everyone.
 
+**Superseded in part by [ADR-0011](ADR-0011-agent-attribution-and-trusted-contributors.md):**
+the list now lives in `inventory/trusted-contributors.json`. The text below
+records the original open question.
+
 **The list's location is not yet decided.** It must be readable by the AEMS
 sweep and writable only by the maintainer. A GitHub Actions secret in
 Catylist cannot be read by a workflow in AEMS, so the choice is between an
