@@ -11,12 +11,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED = (
     "README.md",
+    "CODE_OF_CONDUCT.md",
     "aes-manifest.yaml",
     "docs/architecture/catalyst-ecosystem.md",
     "docs/architecture/governance-model.md",
     "docs/architecture/repository-taxonomy.md",
     "docs/architecture/standards-lifecycle.md",
     "docs/architecture/decision-process.md",
+    "docs/adr/ADR-0000-catylist-code-of-conduct.md",
     "docs/adr/ADR-000-governance-authority.md",
     "docs/adr/ADR-001-repository-taxonomy.md",
     "docs/adr/ADR-002-standards-hierarchy.md",

@@ -42,6 +42,7 @@ repositories is not yet complete.
 
 ## Governance entry points
 
+- [Catylist Code of Conduct](CODE_OF_CONDUCT.md): the ring 0 rule that binds every governed repository and contributor ([ADR-0000](docs/adr/ADR-0000-catylist-code-of-conduct.md))
 - [CAT-001 — Catalyst System Architecture](docs/architecture/CAT-001-Catalyst-System-Architecture.md)
 - [CAT-002 — Engineering Representation, Closure, and Recovery](docs/architecture/CAT-002-Engineering-Representation-Closure-and-Recovery.md)
 - [CAT-003 — PSZ Triangle and Recursive Engineering State](docs/architecture/CAT-003-PSZ-Triangle-and-Recursive-Engineering-State.md)
