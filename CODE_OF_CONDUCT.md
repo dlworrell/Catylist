@@ -1,8 +1,8 @@
 # Catylist Code of Conduct
 
-Version: 1.0.0
+Version: 1.1.0
 Status: Accepted
-Adopted by: [ADR-0000](docs/adr/ADR-0000-catylist-code-of-conduct.md)
+Adopted by: [ADR-0000](docs/adr/ADR-0000-catylist-code-of-conduct.md); amended by [ADR-0010](docs/adr/ADR-0010-ring-0-input-gate-and-trust.md)
 Decision authority: Donovan Worrell
 Date: 2026-10-26
 
@@ -93,6 +93,11 @@ log and its agent instruction file. An agent may author changes. It may not:
 
 AI-authored work is attributed as such.
 
+Every contributor, person, bot or agent, is **untrusted until trust is
+verified** and recorded by the maintainer in Catylist's trusted-contributor
+list. Trust never exempts anyone from the required checks; it only affects how
+an inconclusive result on a conversation post is handled (Law 6).
+
 ### Law 5: Secrets and irreversible actions
 
 Never commit, print or log a secret, private key or token.
@@ -105,6 +110,18 @@ and publishing a release.
 
 Required checks must pass on the exact commit being merged. Conformance with
 this Code is a required check in every governed repository.
+
+**Every input is checked.** That covers pushes, pull requests, reviews,
+comments, issues, discussions, wiki edits, tags and releases, from every
+contributor, at least every 30 minutes, and every result is recorded in an
+append-only ledger:
+
+- Code waits in its pull request until it conforms; nothing reaches a default
+  branch before then.
+- A conversation post that fails is hidden, which can be undone, and
+  reported. An untrusted contributor's post is also hidden while its result is
+  inconclusive, and shown again once it passes.
+- A wiki edit that fails is reported, and the maintainer reverts it.
 
 Nobody skips, disables or weakens a test or check to get a green result. A
 claim of compliance cites its evidence, and a failure is reported as a
@@ -138,9 +155,9 @@ one.
 | 1 | The conformance check: the ADR log exists, and every pull request names an ADR or gives a reason that the AI enforcer accepts |
 | 2 | The conformance check (citations and waiver expiry dates) and review |
 | 3 | Repository rulesets (ADR-0006) |
-| 4 | Rulesets, agent instruction files (ADR-0005), and the conformance check for changes to governance files |
+| 4 | Rulesets, agent instruction files (ADR-0005), the conformance check for changes to governance files, and the trusted-contributor list |
 | 5 | Secret scanning, push protection and review |
-| 6 | Required status checks and review |
+| 6 | Required status checks, the ring 0 input sweep (ADR-0010) and its ledger, and review |
 | 7 | A pinned conformance workflow, updated only by reviewable pull requests |
 | 8 | The AEMS AI enforcer (organizational psychologist prompt), review, and reports to the maintainer |
 
