@@ -5,7 +5,7 @@ Owner: Catylist
 Date: 2026-10-26
 Decision authority: Donovan Worrell
 Ring: 0
-Code version: 1.0.0
+Code version: 1.0.0 (amended to 1.1.0 by [ADR-0010](ADR-0010-ring-0-input-gate-and-trust.md))
 Applies to: every repository whose ownership is `project-owned` or
 `organizational` in the [repository inventory](../../inventory/repositories.json),
 and every contributor to them, human or automated
@@ -225,7 +225,7 @@ are pinned to, and change nothing else.
 
 Status: Accepted
 Ring: 0
-Code version: 1.0.0
+Code version: 1.1.0
 Adopted: YYYY-MM-DD
 Authority: Catylist ADR-0000
 Code: https://github.com/dlworrell/Catylist/blob/<commit>/CODE_OF_CONDUCT.md
