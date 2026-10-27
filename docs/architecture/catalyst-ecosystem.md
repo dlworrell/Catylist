@@ -53,6 +53,32 @@ Catylist defines how repositories relate; it does not absorb their local authori
 
 ## Dependency direction
 
+### Proposed REA recovery relationship
+
+The owner's 2026-10-26 placement direction is tracked in
+[EVO #132](https://github.com/dlworrell/evo/issues/132).
+[ADR-0015](../adr/ADR-0015-rea-recovery-through-evo.md) proposes its formal
+relationship: EVO owns the companion integration and C source admission;
+Catylist governs the ecosystem relationship, AES defines adopted requirements,
+and AEMS assesses and indexes evidence. The ADR remains Proposed pending an
+attributable owner decision; publication does not adopt governance.
+
+REA remains an external reference pinned to
+`9e22da845bf8b447f81539e0ba57d5deb59e9103`, with its inventory classification
+and evidence authority preserved. Native REA evidence informs an interface
+specification and an independently verified, buildable C baseline before EVO
+optimization. Linked companion metadata preserves equipment/run context
+without creating another authoritative observation ledger.
+
+The existing read-only
+[TASK-38](https://app.notion.com/p/402ae4dd715381bfa629f893f99e0543) remains In
+progress. No actual instrument/capture is selected. Installed handoff depends
+on EVO #93/#68 and retains #69's separate product proof. Hardware measurement,
+timing and safety acceptance remain distinct later evidence. The proposed
+ordinary EVO modules create no new ADR-0004 governed scope.
+
+### Existing authority flow
+
 The authority and work flow follows [ADR-003](../adr/ADR-003-authority-chain.md):
 
 ```text
