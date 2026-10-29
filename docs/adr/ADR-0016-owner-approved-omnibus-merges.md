@@ -1,6 +1,6 @@
 # ADR-0016: Owner-Approved Omnibus Merges
 
-Status: Proposed
+Status: Accepted
 Owner: Catylist
 Date: 2026-10-29
 Decision authority: Donovan Worrell

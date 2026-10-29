@@ -68,7 +68,7 @@ Each ADR should record:
 | [ADR-0012](ADR-0012-ring-0-opens-verified-automation-pull-requests.md) | Ring 0 Opens Verified Automation Pull Requests | Accepted | 2026-10-26 |
 | [ADR-0013](ADR-0013-daily-fitment-and-release-branches.md) | Daily, Fitment and Release Branches | Accepted | 2026-10-26 |
 | [ADR-0015](ADR-0015-rea-recovery-through-evo.md) | REA Recovery Capability through EVO | Proposed | 2026-10-26 |
-| [ADR-0016](ADR-0016-owner-approved-omnibus-merges.md) | Owner-Approved Omnibus Merges | Proposed | 2026-10-29 |
+| [ADR-0016](ADR-0016-owner-approved-omnibus-merges.md) | Owner-Approved Omnibus Merges | Accepted | 2026-10-29 |
 
 ADR-0008 is historical proposal lineage superseded within ADR-0007; the distinct CodeQL proposal uses ADR-0009 without reusing that identity.
 
