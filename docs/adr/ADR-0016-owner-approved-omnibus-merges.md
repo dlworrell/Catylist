@@ -6,6 +6,9 @@ Date: 2026-10-29
 Decision authority: Donovan Worrell
 Amends: [ADR-0012](ADR-0012-ring-0-opens-verified-automation-pull-requests.md)
 rule 3 (ring-0 never merges)
+Amended by: [ADR-0017](ADR-0017-omnibus-approval-of-ring-0-pull-requests.md)
+(rule 3, last bullet, and rule 5: ring-0's own promotions, release
+candidates and automation pull requests may be approved in an omnibus)
 Builds on: [ADR-0000](ADR-0000-catylist-code-of-conduct.md),
 [ADR-0006](ADR-0006-default-branch-protection-and-signed-commits.md),
 [ADR-0010](ADR-0010-ring-0-input-gate-and-trust.md),
