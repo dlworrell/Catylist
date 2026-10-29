@@ -1,6 +1,6 @@
 # ADR-0017: Omnibus Approval of Ring 0 Pull Requests
 
-Status: Proposed
+Status: Accepted
 Owner: Catylist
 Date: 2026-10-29
 Decision authority: Donovan Worrell
