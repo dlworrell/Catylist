@@ -1,10 +1,10 @@
 # Catylist Code of Conduct
 
-Version: 1.1.0
+Version: 1.2.0
 Status: Accepted
-Adopted by: [ADR-0000](docs/adr/ADR-0000-catylist-code-of-conduct.md); amended by [ADR-0010](docs/adr/ADR-0010-ring-0-input-gate-and-trust.md)
+Adopted by: [ADR-0000](docs/adr/ADR-0000-catylist-code-of-conduct.md); amended by [ADR-0010](docs/adr/ADR-0010-ring-0-input-gate-and-trust.md) and [ADR-0017](docs/adr/ADR-0017-omnibus-approval-of-ring-0-pull-requests.md)
 Decision authority: Donovan Worrell
-Date: 2026-10-26
+Date: 2026-10-29
 
 This Code is the ring 0 rule for the Catalyst program. It binds every
 Catylist-governed repository and everyone and everything that works on them.
@@ -86,7 +86,10 @@ Every law binds people, bots and AI agents equally.
 Before changing a repository, an agent reads this Code, the repository's ADR
 log and its agent instruction file. An agent may author changes. It may not:
 
-- approve or merge its own work;
+- approve or merge its own work. One exception: `catylist-ring-0` may merge
+  a promotion, release candidate or automation pull request it opened once
+  the owner has approved that exact commit in an omnibus
+  ([ADR-0017](docs/adr/ADR-0017-omnibus-approval-of-ring-0-pull-requests.md));
 - grant a licence or sign as a human;
 - change governance files (this Code, ADRs, rulesets or enforcing workflows)
   without the owner's explicit approval, recorded in the pull request.
@@ -155,7 +158,7 @@ one.
 | 1 | The conformance check: the ADR log exists, and every pull request names an ADR or gives a reason that the AI enforcer accepts |
 | 2 | The conformance check (citations and waiver expiry dates) and review |
 | 3 | Repository rulesets (ADR-0006) |
-| 4 | Rulesets, agent instruction files (ADR-0005), the conformance check for changes to governance files, and the trusted-contributor list |
+| 4 | Rulesets, agent instruction files (ADR-0005), the conformance check for changes to governance files, the trusted-contributor list, and the omnibus executor's class and approval checks (ADR-0017) |
 | 5 | Secret scanning, push protection and review |
 | 6 | Required status checks, the ring 0 input sweep (ADR-0010) and its ledger, and review |
 | 7 | A pinned conformance workflow, updated only by reviewable pull requests |
