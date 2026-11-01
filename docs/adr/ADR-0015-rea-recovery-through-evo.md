@@ -1,10 +1,10 @@
 # ADR-0015: REA Recovery Capability through EVO
 
-Status: Proposed
+Status: Accepted
 Owner: Catylist
 Date: 2026-10-26 (America/Los_Angeles)
-Decision authority: Donovan Worrell; acceptance pending
-Amends: [Catalyst Ecosystem Architecture](../architecture/catalyst-ecosystem.md), by adding the proposed relationship below
+Decision authority: Donovan Worrell; accepted 2026-10-31
+Amends: [Catalyst Ecosystem Architecture](../architecture/catalyst-ecosystem.md), by adding the relationship below
 Builds on: [ADR-003](ADR-003-authority-chain.md), [ADR-0004](ADR-0004-governed-project-scopes.md), [ADR-0006](ADR-0006-default-branch-protection-and-signed-commits.md), [ADR-0007](ADR-0007-governed-check-in-and-shared-automation.md)
 Tracking: [EVO #132](https://github.com/dlworrell/evo/issues/132)
 
@@ -29,16 +29,16 @@ partial source inspection and delivered ingestion materials, with execution
 and hardware limits. This amendment consumes that evidence without replacing
 the task or declaring its remaining criteria complete.
 
-## Proposed relationship decision
+## Relationship decision
 
 1. **EVO owns the companion integration.** It owns interface/device packages,
    evidence-export mapping and companion metadata, compatible implementations,
    C source admission, optimization and replay. Its local ADR-0046 and EVO-004
-   contract are separately reviewed proposals tracked by EVO #132. Their local
+   contract were accepted by the owner on 2026-10-31, tracked by EVO #132. Their local
    serialization, module and execution mechanics remain EVO authority.
    Review the [EVO proposal PR #134](https://github.com/dlworrell/evo/pull/134)
    and [EVO-004 at its verified proposal head](https://github.com/dlworrell/evo/blob/197c5160632e7c160aae1dce474eca9898447061/docs/specs/EVO-004-rea-recovery-integration-contract.md);
-   these are proposed contract sources, not adopted implementation evidence.
+   these are contract sources, not implementation evidence.
 2. **REA remains an external reference.** The integration baseline is the fork
    at `9e22da845bf8b447f81539e0ba57d5deb59e9103`. Its public CLI/MCP/evidence
    contracts supply analysis; this relationship neither enrolls REA under
