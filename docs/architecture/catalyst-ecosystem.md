@@ -63,9 +63,11 @@ Catylist governs the ecosystem relationship, AES defines adopted requirements,
 and AEMS assesses and indexes evidence. The owner accepted the ADR on
 2026-10-31; acceptance governs the relationship, not implementation evidence.
 
-REA remains an external reference pinned to
-`9e22da845bf8b447f81539e0ba57d5deb59e9103`, with its inventory classification
-and evidence authority preserved. Native REA evidence informs an interface
+Since ADR-0015 Amendment 1 (2026-11-06), REA is ingested into EVO: the newest
+upstream `morluto/rea` becomes a governed `rea/` scope in EVO, with its history
+kept as git bundles in Dropbox and owner-approved upstream syncs. The fork
+`dlworrell/rea` keeps its external-reference inventory entry until the owner
+decides its fate. REA's evidence authority is preserved. Native REA evidence informs an interface
 specification and an independently verified, buildable C baseline before EVO
 optimization. Linked companion metadata preserves equipment/run context
 without creating another authoritative observation ledger.
@@ -74,8 +76,9 @@ The existing read-only
 [TASK-38](https://app.notion.com/p/402ae4dd715381bfa629f893f99e0543) remains In
 progress. No actual instrument/capture is selected. Installed handoff depends
 on EVO #93/#68 and retains #69's separate product proof. Hardware measurement,
-timing and safety acceptance remain distinct later evidence. The proposed
-ordinary EVO modules create no new ADR-0004 governed scope.
+timing and safety acceptance remain distinct later evidence. The companion
+modules stay ordinary EVO directories; the ingested REA code is its own `rea/`
+scope.
 
 ### Existing authority flow
 
